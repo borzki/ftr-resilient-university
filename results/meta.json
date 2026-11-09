@@ -1,6 +1,6 @@
 {
  "reportDate": "09 November 2026",
- "repoUrl": "https://github.com/<your-account>/ftr-resilient-university",
+ "repoUrl": "https://github.com/borzki/ftr-resilient-university",
  "env": {
   "docker": "29.9.2",
   "cpus": 16,
