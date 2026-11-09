@@ -80,6 +80,42 @@
      "sum_payments": "970.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 554.3,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.472,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      5,
+      5,
+      6
+     ],
+     "names": [
+      "HighErrorRate",
+      "HighLatencyP95",
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "HighErrorRate{service=payment-service}",
+      "HighLatencyP95{service=payment-service}",
+      "HighLatencyP95{service=records-service}",
+      "ServiceInstanceDown{instance=payment-1:8000}",
+      "ServiceInstanceDown{instance=records-1:8000}",
+      "ServiceInstanceDown{instance=student-1:8000}"
+     ]
     }
    },
    "resilient": {
@@ -156,6 +192,31 @@
      "sum_payments": "1240.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 1050.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      0,
+      0,
+      0
+     ],
+     "names": [],
+     "distinct": []
     }
    }
   },
@@ -239,6 +300,37 @@
      "sum_payments": "700.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 653.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.456,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      3,
+      3,
+      3
+     ],
+     "names": [
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "ServiceInstanceDown{instance=payment-1:8000}",
+      "ServiceInstanceDown{instance=records-1:8000}",
+      "ServiceInstanceDown{instance=student-1:8000}"
+     ]
     }
    },
    "resilient": {
@@ -320,6 +412,37 @@
      "sum_payments": "1350.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 1200.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      3,
+      3,
+      3
+     ],
+     "names": [
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "ServiceInstanceDown{instance=payment-1:8000}",
+      "ServiceInstanceDown{instance=records-1:8000}",
+      "ServiceInstanceDown{instance=student-1:8000}"
+     ]
     }
    }
   },
@@ -408,6 +531,40 @@
      "sum_payments": "0",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 611.7,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.417,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      5,
+      5,
+      5
+     ],
+     "names": [
+      "HighLatencyP95",
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "HighLatencyP95{service=records-service}",
+      "HighLatencyP95{service=student-service}",
+      "ServiceInstanceDown{instance=records-1:8000}",
+      "ServiceInstanceDown{instance=student-1:8000}",
+      "ServiceInstanceDown{instance=timetable-1:8000}"
+     ]
     }
    },
    "resilient": {
@@ -499,6 +656,39 @@
      "sum_payments": "0",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 960.4,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.085,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      2,
+      3,
+      2
+     ],
+     "names": [
+      "CircuitBreakerOpen",
+      "HighLatencyP95",
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "CircuitBreakerOpen{dependency=timetable-service,service=student-service}",
+      "HighLatencyP95{service=student-service}",
+      "ServiceInstanceDown{instance=timetable-1:8000}"
+     ]
     }
    }
   },
@@ -592,6 +782,48 @@
      "sum_payments": "1470.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 462.3,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.657,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      7,
+      9,
+      10
+     ],
+     "names": [
+      "DatabasePrimaryDown",
+      "HighErrorRate",
+      "HighLatencyP95",
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "DatabasePrimaryDown{}",
+      "HighErrorRate{service=student-service}",
+      "HighErrorRate{service=timetable-service}",
+      "HighLatencyP95{service=payment-service}",
+      "HighLatencyP95{service=records-service}",
+      "HighLatencyP95{service=student-service}",
+      "HighLatencyP95{service=timetable-service}",
+      "ServiceInstanceDown{instance=payment-1:8000}",
+      "ServiceInstanceDown{instance=records-1:8000}",
+      "ServiceInstanceDown{instance=student-1:8000}",
+      "ServiceInstanceDown{instance=timetable-1:8000}"
+     ]
     }
    },
    "resilient": {
@@ -678,6 +910,41 @@
      "sum_payments": "1530.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 1350.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      3,
+      3,
+      4
+     ],
+     "names": [
+      "CircuitBreakerOpen",
+      "HighLatencyP95"
+     ],
+     "distinct": [
+      "CircuitBreakerOpen{dependency=db_primary,service=student-service}",
+      "CircuitBreakerOpen{dependency=db_primary,service=timetable-service}",
+      "CircuitBreakerOpen{dependency=timetable-service,service=student-service}",
+      "HighLatencyP95{service=records-service}",
+      "HighLatencyP95{service=student-service}",
+      "HighLatencyP95{service=timetable-service}"
+     ]
     }
    }
   },
@@ -795,6 +1062,30 @@
      "sum_payments": "0",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 6300.5,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      0,
+      0
+     ],
+     "names": [],
+     "distinct": []
     }
    },
    "resilient": {
@@ -910,6 +1201,30 @@
      "sum_payments": "0",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 6300.5,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      0,
+      0
+     ],
+     "names": [],
+     "distinct": []
     }
    }
   },
@@ -1006,6 +1321,40 @@
      "sum_payments": "2860.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 2318.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.164,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      6
+     ],
+     "names": [
+      "HighErrorRate",
+      "HighLatencyP95",
+      "ServiceInstanceDown"
+     ],
+     "distinct": [
+      "HighErrorRate{service=student-service}",
+      "HighLatencyP95{service=records-service}",
+      "HighLatencyP95{service=student-service}",
+      "ServiceInstanceDown{instance=payment-1:8000}",
+      "ServiceInstanceDown{instance=records-1:8000}",
+      "ServiceInstanceDown{instance=student-1:8000}"
+     ]
     }
    },
    "resilient": {
@@ -1095,6 +1444,29 @@
      "sum_payments": "3720.00",
      "audit_denied": 0,
      "audit_login_failures": 0
+    },
+    "integrity_all": {
+     "duplicate_rows": 0,
+     "balance_mismatches": 0
+    },
+    "window_ok": {
+     "mean": 2778.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "window_error_rate": {
+     "mean": 0.0,
+     "min": 0,
+     "max": 0,
+     "n": 1
+    },
+    "alerts": {
+     "per_run": [
+      0
+     ],
+     "names": [],
+     "distinct": []
     }
    }
   }

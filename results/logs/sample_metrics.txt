@@ -1,0 +1,11 @@
+http_requests_total{method="GET",route="/api/dashboard/{student_id}",service="student-service",status="200"} 8.0
+dependency_calls_total{dependency="timetable-service",outcome="success",service="student-service"} 5.0
+dependency_calls_total{dependency="timetable-service",outcome="timeout",service="student-service"} 3.0
+circuit_breaker_state{dependency="db_primary",service="student-service"} 0.0
+circuit_breaker_state{dependency="payment-service",service="student-service"} 0.0
+circuit_breaker_state{dependency="timetable-service",service="student-service"} 2.0
+dependency_up{dependency="db_primary",service="student-service"} 1.0
+dependency_up{dependency="db_replica",service="student-service"} 1.0
+degraded_responses_total{feature="timetable",service="student-service"} 3.0
+auth_failures_total{reason="bad_credentials",service="student-service"} 1.0
+auth_failures_total{reason="forbidden_object",service="student-service"} 0.0

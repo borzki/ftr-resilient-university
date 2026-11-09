@@ -1,0 +1,6 @@
+{"ts": "2026-11-09T13:18:03.921Z", "service": "student-service", "instance": "student-2", "request_id": "incident-0", "event": "graceful_degradation", "feature": "timetable", "reason": "timeout"}
+{"ts": "2026-11-09T13:18:03.921Z", "service": "student-service", "instance": "student-2", "request_id": "incident-0", "event": "http_request", "path": "/api/dashboard/1001", "status": 200, "duration_ms": 806.43}
+{"ts": "2026-11-09T13:18:03+00:00", "service": "gateway", "request_id": "incident-0", "uri": "/api/dashboard/1001", "status": 200, "duration_s": 0.807}
+{"ts": "2026-11-09T13:18:06.350Z", "service": "student-service", "instance": "student-1", "request_id": "incident-3", "event": "graceful_degradation", "feature": "timetable", "reason": "timeout"}
+{"ts": "2026-11-09T13:18:06.350Z", "service": "student-service", "instance": "student-1", "request_id": "incident-3", "event": "http_request", "path": "/api/dashboard/1001", "status": 200, "duration_ms": 806.08}
+{"ts": "2026-11-09T13:18:06+00:00", "service": "gateway", "request_id": "incident-3", "uri": "/api/dashboard/1001", "status": 200, "duration_s": 0.807}

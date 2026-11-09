@@ -37,11 +37,11 @@ def arrow(x1, y1, x2, y2, text="", color=INK2, style="-|>", ls="-", rad=0.0):
 
 
 # client and gateway
-box(2, 52, 14, 9, "Clients", "students, registrar,\nadmin (synthetic)", "opt")
+box(2, 52, 14, 9, "Clients", "web portal (browser)\nand API clients", "opt")
 box(24, 49, 24, 14, "API Gateway (nginx)",
     "load balancing + passive health checks\ntimeouts, bounded failover (GET only)\n"
     "rate limiting, 16 KB body limit\nX-Request-ID, JSON access logs\n:80 public  |  :8081 internal", "edge")
-arrow(16, 56.5, 24, 56.5, "HTTPS/JSON")
+arrow(16, 56.5, 24, 56.5, "HTTP/JSON")
 
 # services
 svc = [("student-service", "auth (JWT), profiles,\ndashboard aggregation", "x2", 4),

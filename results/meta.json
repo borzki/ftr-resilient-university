@@ -11,6 +11,8 @@
  "nginxExcerpt": "    # timeouts and bounded failover to the other replica\n    proxy_connect_timeout 1s;\n    proxy_send_timeout 5s;\n    proxy_read_timeout 5s;\n    proxy_next_upstream error timeout http_502 http_504;   # POSTs are never re-sent (non_idempotent off)\n    proxy_next_upstream_tries 2;\n    proxy_next_upstream_timeout 4s;\n    proxy_http_version 1.1;\n    proxy_set_header Connection \"\";\n    proxy_set_header Host $host;\n    proxy_set_header X-Request-ID $req_id;\n    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;\n\n    # replicas with passive health checking (ejected for 5s after 2 failures)\n    upstream student_svc {\n        server student-1:8000 max_fails=2 fail_timeout=5s;\n        server student-2:8000 max_fails=2 fail_timeout=5s;\n        keepalive 32;\n    }\n    upstream payment_svc {\n        server payment-1:8000 max_fails=2 fail_timeout=5s;\n        server payment-2:8000 max_fails=2 fail_timeout=5s;",
  "sampleLogs": "{\"ts\": \"2026-11-09T12:45:34+00:00\", \"service\": \"gateway\", \"request_id\": \"trace-demo-7f3a\", \"method\": \"GET\", \"uri\": \"/api/dashboard/1001\", \"status\": 200, \"duration_s\": 0.01, \"upstream\": \"172.30.0.21:8000\"}\n{\"ts\": \"2026-11-09T12:45:34+00:00\", \"service\": \"gateway\", \"request_id\": \"trace-demo-7f3a\", \"method\": \"GET\", \"uri\": \"/payment/internal/accounts/1001\", \"status\": 200, \"duration_s\": 0.002, \"upstream\": \"172.30.0.32:8000\"}\n{\"ts\": \"2026-11-09T12:45:34.122Z\", \"service\": \"payment-service\", \"instance\": \"payment-2\", \"request_id\": \"trace-demo-7f3a\", \"event\": \"http_request\", \"method\": \"GET\", \"path\": \"/internal/accounts/1001\", \"status\": 200, \"duration_ms\": 1.22, \"user\": \"-\"}\n{\"ts\": \"2026-11-09T12:45:34+00:00\", \"service\": \"gateway\", \"request_id\": \"trace-demo-7f3a\", \"method\": \"GET\", \"uri\": \"/timetable/internal/timetable/1001\", \"status\": 200, \"duration_s\": 0.003, \"upstream\": \"172.30.0.51:8000\"}\n{\"ts\": \"2026-11-09T12:45:34.126Z\", \"service\": \"timetable-service\", \"instance\": \"timetable-1\", \"request_id\": \"trace-demo-7f3a\", \"event\": \"http_request\", \"method\": \"GET\", \"path\": \"/internal/timetable/1001\", \"status\": 200, \"duration_ms\": 1.51, \"user\": \"-\"}\n{\"ts\": \"2026-11-09T12:45:34.126Z\", \"service\": \"student-service\", \"instance\": \"student-1\", \"request_id\": \"trace-demo-7f3a\", \"event\": \"http_request\", \"method\": \"GET\", \"path\": \"/api/dashboard/1001\", \"status\": 200, \"duration_ms\": 8.84, \"user\": \"s1001\"}",
  "testOutput": "$ docker build -t ftr-unit-tests tests && docker run --rm ftr-unit-tests\nPASSED tests/unit/test_resilience.py::test_breaker_opens_after_threshold_and_short_circuits\nPASSED tests/unit/test_resilience.py::test_breaker_half_open_allows_single_trial_then_closes_on_success\nPASSED tests/unit/test_resilience.py::test_breaker_reopens_when_trial_fails\nPASSED tests/unit/test_resilience.py::test_success_resets_failure_count\nPASSED tests/unit/test_resilience.py::test_retry_succeeds_after_transient_failures\nPASSED tests/unit/test_resilience.py::test_retry_is_bounded\nPASSED tests/unit/test_resilience.py::test_non_retryable_errors_are_not_retried\nPASSED tests/unit/test_security.py::test_valid_token_is_accepted\nPASSED tests/unit/test_security.py::test_missing_or_malformed_token_is_rejected[None]\nPASSED tests/unit/test_security.py::test_missing_or_malformed_token_is_rejected[Basic abc]\nPASSED tests/unit/test_security.py::test_missing_or_malformed_token_is_rejected[Bearer not-a-jwt]\nPASSED tests/unit/test_security.py::test_expired_token_is_rejected\nPASSED tests/unit/test_security.py::test_token_signed_with_other_secret_is_rejected\nPASSED tests/unit/test_security.py::test_alg_none_token_is_rejected\nPASSED tests/unit/test_security.py::test_student_cannot_access_other_student\nPASSED tests/unit/test_security.py::test_internal_endpoint_requires_service_token\nPASSED tests/unit/test_validation.py::test_valid_payment_is_accepted\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override0]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override1]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override2]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override3]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override4]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override5]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override6]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override7]\nPASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override8]\nPASSED tests/unit/test_validation.py::test_non_object_body_is_rejected\nPASSED tests/unit/test_validation.py::test_invalid_grades_are_rejected[override0]\nPASSED tests/unit/test_validation.py::test_invalid_grades_are_rejected[override1]\nPASSED tests/unit/test_validation.py::test_invalid_grades_are_rejected[override2]\nPASSED tests/unit/test_validation.py::test_baseline_mode_only_checks_types\n31 passed in 8.45s\n\n$ python -m pytest tests/integration -q -rA\nPASSED tests/integration/test_workflows.py::test_login_rejects_wrong_password\nPASSED tests/integration/test_workflows.py::test_student_reads_own_profile_dashboard_transcript\nPASSED tests/integration/test_workflows.py::test_object_level_authorization\nPASSED tests/integration/test_workflows.py::test_payment_is_idempotent\nPASSED tests/integration/test_workflows.py::test_payment_requires_idempotency_key_and_valid_input\nPASSED tests/integration/test_workflows.py::test_grade_upsert_is_role_protected_and_idempotent\nPASSED tests/integration/test_workflows.py::test_internal_and_unknown_routes_are_not_exposed\nPASSED tests/integration/test_workflows.py::test_request_id_is_propagated\nPASSED tests/integration/test_workflows.py::test_unauthenticated_access_is_denied\n9 passed in 0.47s\n\nValidation of the InstanceRestarted alert (added after the main runs), resilient stack, 2026-11-09 17:49\n$ kill -9 <uvicorn pid> in student-1\nInstanceRestarted firing after 5.4 s: student-1:8000 (container restarted by restart policy in ~2 s; ServiceInstanceDown did not fire because the outage was shorter than its 4 s \"for\" window)",
+ "sampleMetrics": "http_requests_total{method=\"GET\",route=\"/api/dashboard/{student_id}\",service=\"student-service\",status=\"200\"} 8.0\ndependency_calls_total{dependency=\"timetable-service\",outcome=\"success\",service=\"student-service\"} 5.0\ndependency_calls_total{dependency=\"timetable-service\",outcome=\"timeout\",service=\"student-service\"} 3.0\ncircuit_breaker_state{dependency=\"db_primary\",service=\"student-service\"} 0.0\ncircuit_breaker_state{dependency=\"payment-service\",service=\"student-service\"} 0.0\ncircuit_breaker_state{dependency=\"timetable-service\",service=\"student-service\"} 2.0\ndependency_up{dependency=\"db_primary\",service=\"student-service\"} 1.0\ndependency_up{dependency=\"db_replica\",service=\"student-service\"} 1.0\ndegraded_responses_total{feature=\"timetable\",service=\"student-service\"} 3.0\nauth_failures_total{reason=\"bad_credentials\",service=\"student-service\"} 1.0\nauth_failures_total{reason=\"forbidden_object\",service=\"student-service\"} 0.0",
+ "incidentLogs": "{\"ts\": \"2026-11-09T13:18:03.921Z\", \"service\": \"student-service\", \"instance\": \"student-2\", \"request_id\": \"incident-0\", \"event\": \"graceful_degradation\", \"feature\": \"timetable\", \"reason\": \"timeout\"}\n{\"ts\": \"2026-11-09T13:18:03.921Z\", \"service\": \"student-service\", \"instance\": \"student-2\", \"request_id\": \"incident-0\", \"event\": \"http_request\", \"path\": \"/api/dashboard/1001\", \"status\": 200, \"duration_ms\": 806.43}\n{\"ts\": \"2026-11-09T13:18:03+00:00\", \"service\": \"gateway\", \"request_id\": \"incident-0\", \"uri\": \"/api/dashboard/1001\", \"status\": 200, \"duration_s\": 0.807}\n{\"ts\": \"2026-11-09T13:18:06.350Z\", \"service\": \"student-service\", \"instance\": \"student-1\", \"request_id\": \"incident-3\", \"event\": \"graceful_degradation\", \"feature\": \"timetable\", \"reason\": \"timeout\"}\n{\"ts\": \"2026-11-09T13:18:06.350Z\", \"service\": \"student-service\", \"instance\": \"student-1\", \"request_id\": \"incident-3\", \"event\": \"http_request\", \"path\": \"/api/dashboard/1001\", \"status\": 200, \"duration_ms\": 806.08}\n{\"ts\": \"2026-11-09T13:18:06+00:00\", \"service\": \"gateway\", \"request_id\": \"incident-3\", \"uri\": \"/api/dashboard/1001\", \"status\": 200, \"duration_s\": 0.807}",
  "backupEvidence": "$ docker exec pg-backup ls -l /backups\ntotal 52\n-rw-r--r--    1 root     root         52117 Nov  9 12:43 university_20261109_124348.dump\n\n$ psql -c 'select client_addr, state, sync_state, replay_lag from pg_stat_replication'\n client_addr |   state   | sync_state | replay_lag \n-------------+-----------+------------+------------\n 172.30.0.62 | streaming | async      | \n(1 row)\n\n$ psql (on replica) -At -c 'select pg_is_in_recovery()'\nt",
  "tests": {
   "unit_total": 31,
@@ -67,7 +69,7 @@
    [
     "R6",
     "Right alert within 30 s, no false alerts",
-    "E6: 9.3-15.0 s, no false alerts; E2/E3: 8.5-9.1 s; masked instance crash: InstanceRestarted 5.4 s; a masked 1.3 s DB restart raises no alert",
+    "E6: 9.3-15.0 s, no false alerts; E2/E3: 7.8-9.1 s; E4: CircuitBreakerOpen 6.5-8.5 s; masked instance crashes (E1, E10) raised no alert during the runs; fixed and validated afterwards (InstanceRestarted, 5.4 s)",
     "PARTIAL"
    ],
    [
@@ -122,7 +124,59 @@
   "conclusion": [
    "The project extended a midterm-scope university information system into a cloud-ready microservice platform with resilience, observability and security controls, and evaluated it with ten repeatable experiments against the retained baseline. With replicas, automatic restart and gateway failover, crashes of instances, nodes and the database were masked completely (100% success, recovery in about 1-2 s instead of 21-28 s with an operator). Timeouts and circuit breakers prevented a hanging dependency from cascading. Idempotency keys and atomic transactions eliminated the duplicate and partially applied payments that the baseline produced. Authentication, authorization, validation and rate limiting stopped every tested attack and malformed request and left an audit trail, and the alert rules detected every injected incident within 15 s without false positives.",
    "The remaining risks are known and documented: the single gateway and write primary, the single-host test environment, and the capacity of the load generator. The next steps would be a second gateway behind a virtual IP or cloud load balancer, automatic database failover (Patroni or a managed service), a Kubernetes deployment across several nodes, centralized logs and OpenTelemetry tracing, and load tests from a dedicated machine."
-  ]
+  ],
+  "verdicts": {
+   "E1_instance_crash": {
+    "baseline": "FAIL (R1)",
+    "resilient": "PASS (R1)"
+   },
+   "E2_node_failure": {
+    "baseline": "FAIL (R2)",
+    "resilient": "PASS (R2)"
+   },
+   "E3_dependency_timeout": {
+    "baseline": "FAIL (R3)",
+    "resilient": "PASS (R3)"
+   },
+   "E4_database_failure": {
+    "baseline": "FAIL (R4)",
+    "resilient": "PASS (R4)"
+   },
+   "E5_load_spike": {
+    "baseline": "PASS (R5)",
+    "resilient": "PASS (R5)"
+   },
+   "E10_chaos_soak": {
+    "baseline": "FAIL (R1)",
+    "resilient": "PASS (R1)"
+   }
+  },
+  "alert_assessment": {
+   "E1_instance_crash": {
+    "baseline": "Correct: ServiceInstanceDown{student-1} after 8.8 s. records-1 and payment-1 were also reported down (their metrics endpoint hung while they waited for student-service without a timeout) and HighErrorRate/HighLatencyP95 fired for them: true symptoms of the cascade. No false positives.",
+    "resilient": "No alert: the crash was masked in 1.9 s, shorter than the 4 s window, so a harmless but real event went unnoticed (missed detection). Fixed afterwards with InstanceRestarted (validated: fired 5.4 s after a crash)."
+   },
+   "E2_node_failure": {
+    "baseline": "Correct: ServiceInstanceDown for the three node-A instances after 8.8 s.",
+    "resilient": "Correct: the same three alerts after 8.5 s although users saw no errors, so the team learns about the lost node."
+   },
+   "E3_dependency_timeout": {
+    "baseline": "Correct: ServiceInstanceDown{timetable-1} after 7.8 s; student-1 and records-1 were also reported down (thread exhaustion) and HighLatencyP95 fired: true symptoms of the cascade.",
+    "resilient": "Correct: ServiceInstanceDown{timetable-1} (9.1 s) and CircuitBreakerOpen{student -> timetable} (6.4 s); in one run also HighLatencyP95{student-service} for the 0.8 s degraded dashboards. No false positives."
+   },
+   "E4_database_failure": {
+    "baseline": "Correct: DatabasePrimaryDown after 14.8 s, plus instance-down, error-rate and latency alerts on services that were really failing.",
+    "resilient": "Detected indirectly: DatabasePrimaryDown did not fire (1.3 s outage < 4 s window), but CircuitBreakerOpen (db_primary or timetable) fired 6.5-8.5 s and HighLatencyP95 12.5-14.6 s after the crash in all runs. True positives."
+   },
+   "E5_load_spike": {
+    "baseline": "Correct: no alerts (no incident; latency far below 500 ms).",
+    "resilient": "Correct: no alerts (no incident; latency far below 500 ms)."
+   },
+   "E10_chaos_soak": {
+    "baseline": "Correct: one ServiceInstanceDown per crash plus error-rate and latency alerts during each outage.",
+    "resilient": "No alerts: every crash was masked within about 2 s (InstanceRestarted was not deployed yet during this run)."
+   }
+  }
  },
  "abstract": "This report presents the endterm extension of a fault-tolerant university information system built from four Python/FastAPI microservices (student, payment, academic records, timetable), an nginx API gateway, PostgreSQL with a streaming replica and periodic backups, and a Prometheus/Grafana monitoring stack, all deployed with Docker Compose. A midterm-scope baseline configuration (single instances, no timeouts, retries, idempotency or authentication) is kept and compared with the resilient endterm configuration, which adds replication, automatic recovery, timeouts, bounded retries, circuit breakers, idempotent atomic payments, read failover, graceful degradation, request-ID correlation, alerting and a set of security controls. Ten repeatable experiments with 38 measured runs inject instance and node crashes, a hanging dependency, a database crash, a 15x load spike, monitoring incidents, unauthorized access, malformed and abusive requests, and crashes inside payment transactions. After an instance crash the share of successful requests rose from 52.8% (baseline) to 100%, and recovery time fell from 21.0 s to 1.9 s; during a database crash from 34.3% to 100%; under a hanging dependency the baseline suffered a cascading failure while the resilient system degraded gracefully with no collateral failures. All 10 unauthorized-access cases succeeded against the baseline and all 10 were denied and audited by the resilient system. Retried payments created 34 duplicate charges in the baseline and none in the resilient system. All alerts fired within 9-15 s without false positives. The modelled availability rises from 99.87% (baseline with manual repair) to 99.9996%. Limitations, including the single-host setup and the load-generator capacity, are discussed."
 }

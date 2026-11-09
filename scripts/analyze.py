@@ -87,6 +87,22 @@ def main():
                 row["crashes"] = runs[0]["summary"].get("crashes")
                 row["observed_mtbf_s"] = runs[0]["summary"].get("observed_mtbf_s")
             row["integrity"] = runs[-1]["summary"].get("integrity")
+            # integrity over all repetitions, served-OK requests after the fault, alerts per run
+            row["integrity_all"] = {
+                "duplicate_rows": sum(r["summary"]["integrity"]["duplicate_rows"] for r in runs),
+                "balance_mismatches": sum(r["summary"]["integrity"]["balance_mismatches"] for r in runs)}
+            row["window_ok"] = {"mean": round(statistics.mean(
+                r["summary"].get("window_requests", 0) * (r["summary"].get("window_success_ratio") or 0) for r in runs), 1),
+                "min": 0, "max": 0, "n": 1}
+            row["window_error_rate"] = {"mean": round(1 - row["window_success_ratio"]["mean"], 4), "min": 0, "max": 0,
+                                        "n": 1} if row["window_success_ratio"] else None
+            alerts = []
+            for r in runs:
+                fired = sorted({k.split("#")[0] for k, a in (r.get("alerts") or {}).items() if "firing" in a})
+                alerts.append(fired)
+            names = sorted({a.split("{")[0] for run in alerts for a in run})
+            row["alerts"] = {"per_run": [len(a) for a in alerts], "names": names,
+                             "distinct": sorted({a for run in alerts for a in run})}
             summary["load_experiments"][exp][mode] = row
             md.append(f"| {title} | {mode} | {len(runs)} | {fmt(row['requests'], digits=0)} | "
                       f"{fmt(row['window_success_ratio'], pct=True, digits=2)} | {fmt(row['failed'], digits=0)} | "
