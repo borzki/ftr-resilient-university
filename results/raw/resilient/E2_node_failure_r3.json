@@ -1,0 +1,474 @@
+{
+ "mode": "resilient",
+ "experiment": "E2_node_failure",
+ "rep": 3,
+ "summary": {
+  "requests": 1499,
+  "success": 1499,
+  "failed": 0,
+  "rate_limited": 0,
+  "degraded": 0,
+  "success_ratio": 1.0,
+  "error_rate": 0.0,
+  "latency_avg_ms": 63.0,
+  "latency_p50_ms": 10.8,
+  "latency_p95_ms": 37.4,
+  "latency_p99_ms": 1056.4,
+  "client_timeouts": 0,
+  "status_counts": {
+   "200": 1364,
+   "201": 135
+  },
+  "window_requests": 1200,
+  "window_success_ratio": 1.0,
+  "first_failure_s": null,
+  "impact_duration_s": 0.0,
+  "send_rate_rps": 30.2,
+  "integrity": {
+   "payment_rows": 135,
+   "duplicated_refs": 0,
+   "duplicate_rows": 0,
+   "balance_mismatches": 0,
+   "invalid_payments": 0,
+   "invalid_grades": 0,
+   "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+   "total_paid": "1350.00",
+   "sum_payments": "1350.00",
+   "audit_denied": 0,
+   "audit_login_failures": 0
+  },
+  "detection_s": 8.5,
+  "container_recovery_s": 22.92
+ },
+ "events": [
+  {
+   "t": 10.01,
+   "name": "node A down (docker stop -t 0)",
+   "detail": "student-1\npayment-1\nrecords-1"
+  },
+  {
+   "t": 30.01,
+   "name": "node A repaired (docker start)",
+   "detail": ""
+  }
+ ],
+ "alerts": {
+  "ServiceInstanceDown{instance=records-1:8000}": {
+   "pending": 14.45,
+   "firing": 18.5,
+   "resolved": 36.69
+  },
+  "ServiceInstanceDown{instance=payment-1:8000}": {
+   "pending": 14.45,
+   "firing": 18.5,
+   "resolved": 36.69
+  },
+  "ServiceInstanceDown{instance=student-1:8000}": {
+   "pending": 14.45,
+   "firing": 18.5,
+   "resolved": 36.69
+  }
+ },
+ "timeseries": [
+  {
+   "t": 0.0,
+   "ok": 29,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 40.3
+  },
+  {
+   "t": 1.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.3
+  },
+  {
+   "t": 2.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.8
+  },
+  {
+   "t": 3.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.2
+  },
+  {
+   "t": 4.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.4
+  },
+  {
+   "t": 5.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.7
+  },
+  {
+   "t": 6.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.7
+  },
+  {
+   "t": 7.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.8
+  },
+  {
+   "t": 8.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.7
+  },
+  {
+   "t": 9.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.1
+  },
+  {
+   "t": 10.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 2088.5
+  },
+  {
+   "t": 11.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 2078.4
+  },
+  {
+   "t": 12.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 1083.2
+  },
+  {
+   "t": 13.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 18.2
+  },
+  {
+   "t": 14.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.4
+  },
+  {
+   "t": 15.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.1
+  },
+  {
+   "t": 16.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.9
+  },
+  {
+   "t": 17.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 23.3
+  },
+  {
+   "t": 18.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 18.7
+  },
+  {
+   "t": 19.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 1045.0
+  },
+  {
+   "t": 20.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 1021.7
+  },
+  {
+   "t": 21.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.5
+  },
+  {
+   "t": 22.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.7
+  },
+  {
+   "t": 23.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.8
+  },
+  {
+   "t": 24.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.2
+  },
+  {
+   "t": 25.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.3
+  },
+  {
+   "t": 26.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 1010.5
+  },
+  {
+   "t": 27.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 1026.6
+  },
+  {
+   "t": 28.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.8
+  },
+  {
+   "t": 29.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.0
+  },
+  {
+   "t": 30.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.2
+  },
+  {
+   "t": 31.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 18.3
+  },
+  {
+   "t": 32.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.8
+  },
+  {
+   "t": 33.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.3
+  },
+  {
+   "t": 34.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.0
+  },
+  {
+   "t": 35.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.7
+  },
+  {
+   "t": 36.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.0
+  },
+  {
+   "t": 37.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.2
+  },
+  {
+   "t": 38.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.8
+  },
+  {
+   "t": 39.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.4
+  },
+  {
+   "t": 40.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.6
+  },
+  {
+   "t": 41.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.1
+  },
+  {
+   "t": 42.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.2
+  },
+  {
+   "t": 43.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.0
+  },
+  {
+   "t": 44.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.8
+  },
+  {
+   "t": 45.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.3
+  },
+  {
+   "t": 46.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.8
+  },
+  {
+   "t": 47.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.9
+  },
+  {
+   "t": 48.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.4
+  },
+  {
+   "t": 49.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 12.7
+  }
+ ]
+}

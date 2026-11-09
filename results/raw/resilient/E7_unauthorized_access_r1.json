@@ -1,0 +1,129 @@
+{
+ "mode": "resilient",
+ "experiment": "E7_unauthorized_access",
+ "rep": 1,
+ "summary": {
+  "cases": [
+   {
+    "case": "no_token",
+    "request": "GET /api/students/1002",
+    "status": 401,
+    "expected": [
+     401
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "forged_signature_admin",
+    "request": "GET /api/students/1002",
+    "status": 401,
+    "expected": [
+     401
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "expired_token",
+    "request": "GET /api/students/1002",
+    "status": 401,
+    "expected": [
+     401
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "alg_none_token",
+    "request": "GET /api/admin/audit",
+    "status": 401,
+    "expected": [
+     401
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "idor_other_student_profile",
+    "request": "GET /api/students/1002",
+    "status": 403,
+    "expected": [
+     403
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "idor_other_transcript",
+    "request": "GET /api/records/transcripts/1002",
+    "status": 403,
+    "expected": [
+     403
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "student_changes_grade",
+    "request": "POST /api/records/grades",
+    "status": 403,
+    "expected": [
+     403
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "student_reads_audit_log",
+    "request": "GET /api/admin/audit",
+    "status": 403,
+    "expected": [
+     403
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "pay_for_other_student",
+    "request": "POST /api/payments",
+    "status": 403,
+    "expected": [
+     403
+    ],
+    "passed": true,
+    "data_exposed": false
+   },
+   {
+    "case": "internal_endpoint_via_gateway",
+    "request": "GET /internal/students/1002",
+    "status": 404,
+    "expected": [
+     403,
+     404
+    ],
+    "passed": true,
+    "data_exposed": false
+   }
+  ],
+  "passed": 10,
+  "total": 10,
+  "data_exposed": 0,
+  "grades_changed": false,
+  "payments_created": 0,
+  "audit_denied_events": 9,
+  "integrity": {
+   "payment_rows": 0,
+   "duplicated_refs": 0,
+   "duplicate_rows": 0,
+   "balance_mismatches": 0,
+   "invalid_payments": 0,
+   "invalid_grades": 0,
+   "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+   "total_paid": "0.00",
+   "sum_payments": "0",
+   "audit_denied": 9,
+   "audit_login_failures": 0
+  }
+ }
+}

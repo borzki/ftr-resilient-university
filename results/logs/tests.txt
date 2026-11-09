@@ -1,0 +1,45 @@
+$ docker build -t ftr-unit-tests tests && docker run --rm ftr-unit-tests
+PASSED tests/unit/test_resilience.py::test_breaker_opens_after_threshold_and_short_circuits
+PASSED tests/unit/test_resilience.py::test_breaker_half_open_allows_single_trial_then_closes_on_success
+PASSED tests/unit/test_resilience.py::test_breaker_reopens_when_trial_fails
+PASSED tests/unit/test_resilience.py::test_success_resets_failure_count
+PASSED tests/unit/test_resilience.py::test_retry_succeeds_after_transient_failures
+PASSED tests/unit/test_resilience.py::test_retry_is_bounded
+PASSED tests/unit/test_resilience.py::test_non_retryable_errors_are_not_retried
+PASSED tests/unit/test_security.py::test_valid_token_is_accepted
+PASSED tests/unit/test_security.py::test_missing_or_malformed_token_is_rejected[None]
+PASSED tests/unit/test_security.py::test_missing_or_malformed_token_is_rejected[Basic abc]
+PASSED tests/unit/test_security.py::test_missing_or_malformed_token_is_rejected[Bearer not-a-jwt]
+PASSED tests/unit/test_security.py::test_expired_token_is_rejected
+PASSED tests/unit/test_security.py::test_token_signed_with_other_secret_is_rejected
+PASSED tests/unit/test_security.py::test_alg_none_token_is_rejected
+PASSED tests/unit/test_security.py::test_student_cannot_access_other_student
+PASSED tests/unit/test_security.py::test_internal_endpoint_requires_service_token
+PASSED tests/unit/test_validation.py::test_valid_payment_is_accepted
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override0]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override1]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override2]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override3]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override4]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override5]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override6]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override7]
+PASSED tests/unit/test_validation.py::test_invalid_payments_are_rejected[override8]
+PASSED tests/unit/test_validation.py::test_non_object_body_is_rejected
+PASSED tests/unit/test_validation.py::test_invalid_grades_are_rejected[override0]
+PASSED tests/unit/test_validation.py::test_invalid_grades_are_rejected[override1]
+PASSED tests/unit/test_validation.py::test_invalid_grades_are_rejected[override2]
+PASSED tests/unit/test_validation.py::test_baseline_mode_only_checks_types
+31 passed in 8.45s
+
+$ python -m pytest tests/integration -q -rA
+PASSED tests/integration/test_workflows.py::test_login_rejects_wrong_password
+PASSED tests/integration/test_workflows.py::test_student_reads_own_profile_dashboard_transcript
+PASSED tests/integration/test_workflows.py::test_object_level_authorization
+PASSED tests/integration/test_workflows.py::test_payment_is_idempotent
+PASSED tests/integration/test_workflows.py::test_payment_requires_idempotency_key_and_valid_input
+PASSED tests/integration/test_workflows.py::test_grade_upsert_is_role_protected_and_idempotent
+PASSED tests/integration/test_workflows.py::test_internal_and_unknown_routes_are_not_exposed
+PASSED tests/integration/test_workflows.py::test_request_id_is_propagated
+PASSED tests/integration/test_workflows.py::test_unauthenticated_access_is_denied
+9 passed in 0.47s

@@ -1,0 +1,233 @@
+# RESILIENT (endterm) configuration.
+#   docker compose -f docker-compose.resilient.yml up -d --build
+# Public endpoints (bound to localhost only):
+#   API gateway http://localhost:18080   Prometheus http://localhost:19090   Grafana http://localhost:13000
+name: ftr-resilient
+
+x-service: &service
+  build: ./services
+  image: ftr-university-service:latest
+  init: true                       # tini as PID 1 so a crashed app process ends the container
+  restart: unless-stopped          # self-healing: crashed containers are restarted automatically
+  read_only: true
+  tmpfs: [/tmp]
+  security_opt: ["no-new-privileges:true"]
+  cap_drop: [ALL]
+  depends_on:
+    pg-primary: {condition: service_healthy}
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live', timeout=2)"]
+    interval: 5s
+    timeout: 3s
+    retries: 3
+    start_period: 10s
+  deploy:
+    resources:
+      limits: {cpus: "1.0", memory: 256M}
+
+x-common-env: &common-env
+  FT_MODE: resilient
+  INTERNAL_GATEWAY: http://gateway:8081
+  JWT_SECRET: ${JWT_SECRET:?run scripts/init_env.py first}
+  SERVICE_TOKEN: ${SERVICE_TOKEN:?run scripts/init_env.py first}
+  CHAOS_ENABLED: "true"            # test environment only
+  CHAOS_TOKEN: ${CHAOS_TOKEN}
+
+services:
+  # ------------------------------------------------------------- gateway
+  gateway:
+    image: nginx:1.27-alpine
+    container_name: gateway
+    restart: unless-stopped
+    volumes:
+      - ./gateway/nginx.resilient.conf:/etc/nginx/nginx.conf:ro
+    ports: ["127.0.0.1:18080:80"]
+    depends_on: [student-1, student-2, payment-1, payment-2, records-1, records-2, timetable-1]
+    networks: {uni: {ipv4_address: 172.30.0.10}}
+
+  # ------------------------------------------------------------- student
+  student-1: &student
+    <<: *service
+    container_name: student-1
+    environment:
+      <<: *common-env
+      SERVICE: student
+      SERVICE_NAME: student-service
+      INSTANCE_ID: student-1
+      DB_PRIMARY_DSN: postgresql://student_svc:${STUDENT_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://student_svc:${STUDENT_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.21}}
+  student-2:
+    <<: *student
+    container_name: student-2
+    environment:
+      <<: *common-env
+      SERVICE: student
+      SERVICE_NAME: student-service
+      INSTANCE_ID: student-2
+      DB_PRIMARY_DSN: postgresql://student_svc:${STUDENT_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://student_svc:${STUDENT_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.22}}
+
+  # ------------------------------------------------------------- payment
+  payment-1: &payment
+    <<: *service
+    container_name: payment-1
+    environment:
+      <<: *common-env
+      SERVICE: payment
+      SERVICE_NAME: payment-service
+      INSTANCE_ID: payment-1
+      DB_PRIMARY_DSN: postgresql://payment_svc:${PAYMENT_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://payment_svc:${PAYMENT_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.31}}
+  payment-2:
+    <<: *payment
+    container_name: payment-2
+    environment:
+      <<: *common-env
+      SERVICE: payment
+      SERVICE_NAME: payment-service
+      INSTANCE_ID: payment-2
+      DB_PRIMARY_DSN: postgresql://payment_svc:${PAYMENT_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://payment_svc:${PAYMENT_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.32}}
+
+  # ------------------------------------------------------------- records
+  records-1: &records
+    <<: *service
+    container_name: records-1
+    environment:
+      <<: *common-env
+      SERVICE: records
+      SERVICE_NAME: records-service
+      INSTANCE_ID: records-1
+      DB_PRIMARY_DSN: postgresql://records_svc:${RECORDS_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://records_svc:${RECORDS_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.41}}
+  records-2:
+    <<: *records
+    container_name: records-2
+    environment:
+      <<: *common-env
+      SERVICE: records
+      SERVICE_NAME: records-service
+      INSTANCE_ID: records-2
+      DB_PRIMARY_DSN: postgresql://records_svc:${RECORDS_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://records_svc:${RECORDS_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.42}}
+
+  # ----------------------------------------------- timetable (non-critical)
+  timetable-1:
+    <<: *service
+    container_name: timetable-1
+    environment:
+      <<: *common-env
+      SERVICE: timetable
+      SERVICE_NAME: timetable-service
+      INSTANCE_ID: timetable-1
+      DB_PRIMARY_DSN: postgresql://timetable_svc:${TIMETABLE_DB_PASSWORD}@pg-primary:5432/university
+      DB_REPLICA_DSN: postgresql://timetable_svc:${TIMETABLE_DB_PASSWORD}@pg-replica:5432/university
+    networks: {uni: {ipv4_address: 172.30.0.51}}
+
+  # ------------------------------------------------------------- database
+  pg-primary:
+    image: postgres:16-alpine
+    container_name: pg-primary
+    init: true
+    restart: unless-stopped
+    environment: &pg-env
+      POSTGRES_DB: university
+      POSTGRES_USER: university
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SEED_PASSWORD: ${SEED_PASSWORD}
+      STUDENT_DB_PASSWORD: ${STUDENT_DB_PASSWORD}
+      PAYMENT_DB_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      RECORDS_DB_PASSWORD: ${RECORDS_DB_PASSWORD}
+      TIMETABLE_DB_PASSWORD: ${TIMETABLE_DB_PASSWORD}
+      REPLICATION_PASSWORD: ${REPLICATION_PASSWORD}
+    command: ["postgres", "-c", "wal_level=replica", "-c", "max_wal_senders=10", "-c", "wal_keep_size=128MB",
+              "-c", "hot_standby=on", "-c", "max_connections=200"]
+    volumes:
+      - pg-primary-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U university -d university"]
+      interval: 3s
+      timeout: 2s
+      retries: 20
+    networks: {uni: {ipv4_address: 172.30.0.61}}
+
+  pg-replica:
+    image: postgres:16-alpine
+    container_name: pg-replica
+    init: true
+    restart: unless-stopped
+    user: postgres
+    environment:
+      REPLICATION_PASSWORD: ${REPLICATION_PASSWORD}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    entrypoint: ["sh", "/replica-entrypoint.sh"]
+    volumes:
+      - pg-replica-data:/var/lib/postgresql/data
+      - ./db/replica-entrypoint.sh:/replica-entrypoint.sh:ro
+    depends_on:
+      pg-primary: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -U university -d university"]
+      interval: 3s
+      timeout: 2s
+      retries: 30
+    networks: {uni: {ipv4_address: 172.30.0.62}}
+
+  pg-backup:
+    image: postgres:16-alpine
+    container_name: pg-backup
+    restart: unless-stopped
+    environment:
+      <<: *pg-env
+      BACKUP_INTERVAL_S: "300"
+    entrypoint: ["sh", "/backup.sh"]
+    volumes:
+      - pg-backups:/backups
+      - ./db/backup.sh:/backup.sh:ro
+    depends_on:
+      pg-primary: {condition: service_healthy}
+    networks: {uni: {ipv4_address: 172.30.0.63}}
+
+  # ------------------------------------------------------------- monitoring
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: prometheus
+    restart: unless-stopped
+    volumes:
+      - ./monitoring/prometheus.resilient.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+    ports: ["127.0.0.1:19090:9090"]
+    networks: {uni: {ipv4_address: 172.30.0.71}}
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/university.json
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports: ["127.0.0.1:13000:3000"]
+    networks: {uni: {ipv4_address: 172.30.0.72}}
+
+networks:
+  uni:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
+volumes:
+  pg-primary-data:
+  pg-replica-data:
+  pg-backups:

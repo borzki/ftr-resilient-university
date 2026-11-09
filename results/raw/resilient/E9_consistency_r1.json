@@ -1,0 +1,35 @@
+{
+ "mode": "resilient",
+ "experiment": "E9_consistency",
+ "rep": 1,
+ "summary": {
+  "A_response_lost_after_commit": {
+   "logical_payments": 100,
+   "acknowledged": 100,
+   "attempts_total": 126,
+   "lost_acknowledged": 0,
+   "duplicate_rows": 0,
+   "payment_rows": 100,
+   "balance_mismatches": 0,
+   "expected_total_for_acked": "2500.00",
+   "sum_payments": "2500.00",
+   "sum_account_balances": "2500.00",
+   "restarts_or_reapplies": 0,
+   "elapsed_s": 1.5
+  },
+  "B_crash_mid_transaction": {
+   "logical_payments": 80,
+   "acknowledged": 58,
+   "attempts_total": 146,
+   "lost_acknowledged": 0,
+   "duplicate_rows": 0,
+   "payment_rows": 58,
+   "balance_mismatches": 0,
+   "expected_total_for_acked": "1450.00",
+   "sum_payments": "1450.00",
+   "sum_account_balances": "1450.00",
+   "restarts_or_reapplies": 4,
+   "elapsed_s": 12.4
+  }
+ }
+}

@@ -1,0 +1,111 @@
+# BASELINE (midterm-scope) configuration used as the comparison point.
+#   docker compose -f docker-compose.baseline.yml up -d --build
+# One instance per service, no restart policy, no replica/backup, a single shared
+# database owner account, and FT_MODE=baseline (no timeouts, retries, circuit
+# breakers, idempotency, authentication or business validation).
+# The monitoring stack is attached as measurement instrumentation only.
+name: ftr-baseline
+
+x-service: &service
+  build: ./services
+  image: ftr-university-service:latest
+  init: true
+  restart: "no"
+  depends_on:
+    pg-primary: {condition: service_healthy}
+
+x-common-env: &common-env
+  FT_MODE: baseline
+  INTERNAL_GATEWAY: http://gateway:8081
+  DB_PRIMARY_DSN: postgresql://university:${POSTGRES_PASSWORD}@pg-primary:5432/university
+  CHAOS_ENABLED: "true"
+  CHAOS_TOKEN: ${CHAOS_TOKEN}
+
+services:
+  gateway:
+    image: nginx:1.27-alpine
+    container_name: gateway
+    volumes:
+      - ./gateway/nginx.baseline.conf:/etc/nginx/nginx.conf:ro
+    ports: ["127.0.0.1:18080:80"]
+    depends_on: [student-1, payment-1, records-1, timetable-1]
+    networks: {uni: {ipv4_address: 172.30.0.10}}
+
+  student-1:
+    <<: *service
+    container_name: student-1
+    environment: {<<: *common-env, SERVICE: student, SERVICE_NAME: student-service, INSTANCE_ID: student-1}
+    networks: {uni: {ipv4_address: 172.30.0.21}}
+  payment-1:
+    <<: *service
+    container_name: payment-1
+    environment: {<<: *common-env, SERVICE: payment, SERVICE_NAME: payment-service, INSTANCE_ID: payment-1}
+    networks: {uni: {ipv4_address: 172.30.0.31}}
+  records-1:
+    <<: *service
+    container_name: records-1
+    environment: {<<: *common-env, SERVICE: records, SERVICE_NAME: records-service, INSTANCE_ID: records-1}
+    networks: {uni: {ipv4_address: 172.30.0.41}}
+  timetable-1:
+    <<: *service
+    container_name: timetable-1
+    environment: {<<: *common-env, SERVICE: timetable, SERVICE_NAME: timetable-service, INSTANCE_ID: timetable-1}
+    networks: {uni: {ipv4_address: 172.30.0.51}}
+
+  pg-primary:
+    image: postgres:16-alpine
+    container_name: pg-primary
+    init: true
+    restart: "no"
+    environment:
+      POSTGRES_DB: university
+      POSTGRES_USER: university
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      SEED_PASSWORD: ${SEED_PASSWORD}
+      STUDENT_DB_PASSWORD: ${STUDENT_DB_PASSWORD}
+      PAYMENT_DB_PASSWORD: ${PAYMENT_DB_PASSWORD}
+      RECORDS_DB_PASSWORD: ${RECORDS_DB_PASSWORD}
+      TIMETABLE_DB_PASSWORD: ${TIMETABLE_DB_PASSWORD}
+      REPLICATION_PASSWORD: ${REPLICATION_PASSWORD}
+    command: ["postgres", "-c", "max_connections=200"]
+    volumes:
+      - pg-baseline-data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U university -d university"]
+      interval: 3s
+      timeout: 2s
+      retries: 20
+    networks: {uni: {ipv4_address: 172.30.0.61}}
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    container_name: prometheus
+    volumes:
+      - ./monitoring/prometheus.baseline.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+    ports: ["127.0.0.1:19090:9090"]
+    networks: {uni: {ipv4_address: 172.30.0.71}}
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    container_name: grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD}
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/university.json
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports: ["127.0.0.1:13000:3000"]
+    networks: {uni: {ipv4_address: 172.30.0.72}}
+
+networks:
+  uni:
+    ipam:
+      config:
+        - subnet: 172.30.0.0/24
+
+volumes:
+  pg-baseline-data:

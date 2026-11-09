@@ -1,0 +1,12 @@
+[17:33:21] logged in 52 test users
+[17:33:21] === resilient E5 rep 1: Load spike: 20 rps -> 400 rps for 20 s -> 20 rps (generated inside the Docker network).
+[17:34:20]   E5_load_spike r1: n=8492 ok=0.458 failed=4603 degraded=0 p95=5395.1ms impact=25.03s detect=None recover=None
+[17:34:20] === resilient E5 rep 2: Load spike: 20 rps -> 400 rps for 20 s -> 20 rps (generated inside the Docker network).
+[17:35:19]   E5_load_spike r2: n=8484 ok=0.9415 failed=496 degraded=0 p95=5033.6ms impact=23.89s detect=None recover=None
+[17:35:19] === resilient E6 rep 1: Monitoring/alert validation: inject known latency, errors and auth failures.
+[17:35:41]   t= 10.0s records latency 700 ms
+[17:36:11]   t= 40.0s records latency off, error rate 30%
+[17:36:41]   t= 70.0s records faults off
+[17:36:45]   t= 75.0s 40 failed logins
+[17:37:21]   E6_alert_test r1: n=1649 ok=0.9515 failed=80 degraded=0 p95=712.2ms impact=60.07s detect=None recover=None
+[17:37:32] done

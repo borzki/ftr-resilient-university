@@ -1,0 +1,100 @@
+{
+ "mode": "baseline",
+ "experiment": "E8_abuse_malformed",
+ "rep": 1,
+ "summary": {
+  "cases": [
+   {
+    "case": "negative_amount",
+    "status": 201,
+    "rejected": false,
+    "server_error": false
+   },
+   {
+    "case": "huge_amount",
+    "status": 500,
+    "rejected": false,
+    "server_error": true
+   },
+   {
+    "case": "xss_in_term",
+    "status": 502,
+    "rejected": false,
+    "server_error": true
+   },
+   {
+    "case": "sql_injection_in_term",
+    "status": 201,
+    "rejected": false,
+    "server_error": false
+   },
+   {
+    "case": "unknown_payment_method",
+    "status": 201,
+    "rejected": false,
+    "server_error": false
+   },
+   {
+    "case": "wrong_type_student_id",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "oversized_body_64kb",
+    "status": 201,
+    "rejected": false,
+    "server_error": false
+   },
+   {
+    "case": "invalid_grade_value",
+    "status": 200,
+    "rejected": false,
+    "server_error": false
+   },
+   {
+    "case": "sql_injection_course_code",
+    "status": 200,
+    "rejected": false,
+    "server_error": false
+   },
+   {
+    "case": "invalid_json",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   }
+  ],
+  "rejected": 2,
+  "total": 10,
+  "server_errors": 2,
+  "burst": {
+   "burst_requests": 400,
+   "burst_ok": 400,
+   "burst_429": 0,
+   "burst_errors": 0,
+   "probe_requests": 40,
+   "probe_ok": 40,
+   "probe_p95_ms": 12.6
+  },
+  "login_bruteforce_status_counts": {
+   "401": 100
+  },
+  "all_containers_running": true,
+  "invalid_payments_stored": 5,
+  "invalid_grades_stored": 1,
+  "integrity": {
+   "payment_rows": 5,
+   "duplicated_refs": 0,
+   "duplicate_rows": 0,
+   "balance_mismatches": 1,
+   "invalid_payments": 5,
+   "invalid_grades": 1,
+   "grades_checksum": "06ad904e0b20e0236ff05f783a2ac69b",
+   "total_paid": "-470.00",
+   "sum_payments": "999999999529.99",
+   "audit_denied": 0,
+   "audit_login_failures": 100
+  }
+ }
+}

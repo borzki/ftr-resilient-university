@@ -1,0 +1,514 @@
+{
+ "mode": "resilient",
+ "experiment": "E4_database_failure",
+ "rep": 3,
+ "summary": {
+  "requests": 1649,
+  "success": 1649,
+  "failed": 0,
+  "rate_limited": 0,
+  "degraded": 74,
+  "success_ratio": 1.0,
+  "error_rate": 0.0,
+  "latency_avg_ms": 44.6,
+  "latency_p50_ms": 11.0,
+  "latency_p95_ms": 23.2,
+  "latency_p99_ms": 1308.1,
+  "client_timeouts": 0,
+  "status_counts": {
+   "200": 1496,
+   "201": 153
+  },
+  "window_requests": 1350,
+  "window_success_ratio": 1.0,
+  "first_failure_s": null,
+  "impact_duration_s": 0.0,
+  "send_rate_rps": 30.1,
+  "integrity": {
+   "payment_rows": 153,
+   "duplicated_refs": 0,
+   "duplicate_rows": 0,
+   "balance_mismatches": 0,
+   "invalid_payments": 0,
+   "invalid_grades": 0,
+   "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+   "total_paid": "1530.00",
+   "sum_payments": "1530.00",
+   "audit_denied": 0,
+   "audit_login_failures": 0
+  },
+  "detection_s": null,
+  "container_recovery_s": 1.31,
+  "read_success_ratio": 1.0,
+  "write_success_ratio": 1.0
+ },
+ "events": [
+  {
+   "t": 10.01,
+   "name": "crash pg-primary (SIGKILL)",
+   "detail": ""
+  }
+ ],
+ "alerts": {
+  "HighLatencyP95{service=student-service}": {
+   "pending": 16.45,
+   "firing": 22.51,
+   "resolved": 34.64
+  },
+  "CircuitBreakerOpen{dependency=timetable-service,service=student-service}": {
+   "firing": 16.45,
+   "resolved": 24.53
+  },
+  "HighLatencyP95{service=timetable-service}": {
+   "pending": 18.46,
+   "firing": 24.53,
+   "resolved": 36.66
+  },
+  "CircuitBreakerOpen{dependency=db_primary,service=timetable-service}": {
+   "firing": 18.46,
+   "resolved": 20.48
+  }
+ },
+ "timeseries": [
+  {
+   "t": 0.0,
+   "ok": 29,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 41.3
+  },
+  {
+   "t": 1.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.1
+  },
+  {
+   "t": 2.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.8
+  },
+  {
+   "t": 3.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.3
+  },
+  {
+   "t": 4.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 20.5
+  },
+  {
+   "t": 5.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.0
+  },
+  {
+   "t": 6.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.4
+  },
+  {
+   "t": 7.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.6
+  },
+  {
+   "t": 8.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.6
+  },
+  {
+   "t": 9.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.7
+  },
+  {
+   "t": 10.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 6,
+   "rate_limited": 0,
+   "p95_ms": 2013.0
+  },
+  {
+   "t": 11.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 9,
+   "rate_limited": 0,
+   "p95_ms": 855.6
+  },
+  {
+   "t": 12.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 13,
+   "rate_limited": 0,
+   "p95_ms": 2007.9
+  },
+  {
+   "t": 13.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 10,
+   "rate_limited": 0,
+   "p95_ms": 17.7
+  },
+  {
+   "t": 14.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 5,
+   "rate_limited": 0,
+   "p95_ms": 25.2
+  },
+  {
+   "t": 15.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 11,
+   "rate_limited": 0,
+   "p95_ms": 35.9
+  },
+  {
+   "t": 16.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 8,
+   "rate_limited": 0,
+   "p95_ms": 20.2
+  },
+  {
+   "t": 17.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 11,
+   "rate_limited": 0,
+   "p95_ms": 13.5
+  },
+  {
+   "t": 18.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 1,
+   "rate_limited": 0,
+   "p95_ms": 15.4
+  },
+  {
+   "t": 19.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.1
+  },
+  {
+   "t": 20.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.7
+  },
+  {
+   "t": 21.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 19.4
+  },
+  {
+   "t": 22.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.8
+  },
+  {
+   "t": 23.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.3
+  },
+  {
+   "t": 24.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.4
+  },
+  {
+   "t": 25.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.0
+  },
+  {
+   "t": 26.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.8
+  },
+  {
+   "t": 27.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.7
+  },
+  {
+   "t": 28.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.2
+  },
+  {
+   "t": 29.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.8
+  },
+  {
+   "t": 30.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.1
+  },
+  {
+   "t": 31.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.3
+  },
+  {
+   "t": 32.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 17.2
+  },
+  {
+   "t": 33.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.9
+  },
+  {
+   "t": 34.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 36.2
+  },
+  {
+   "t": 35.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 165.8
+  },
+  {
+   "t": 36.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.0
+  },
+  {
+   "t": 37.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 23.2
+  },
+  {
+   "t": 38.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.9
+  },
+  {
+   "t": 39.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 26.7
+  },
+  {
+   "t": 40.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.2
+  },
+  {
+   "t": 41.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 18.8
+  },
+  {
+   "t": 42.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 16.0
+  },
+  {
+   "t": 43.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 13.5
+  },
+  {
+   "t": 44.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.6
+  },
+  {
+   "t": 45.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.4
+  },
+  {
+   "t": 46.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.5
+  },
+  {
+   "t": 47.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 22.7
+  },
+  {
+   "t": 48.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 18.9
+  },
+  {
+   "t": 49.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.5
+  },
+  {
+   "t": 50.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.8
+  },
+  {
+   "t": 51.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 14.0
+  },
+  {
+   "t": 52.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.7
+  },
+  {
+   "t": 53.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.8
+  },
+  {
+   "t": 54.0,
+   "ok": 30,
+   "failed": 0,
+   "degraded": 0,
+   "rate_limited": 0,
+   "p95_ms": 15.7
+  }
+ ]
+}

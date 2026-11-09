@@ -1,0 +1,6 @@
+[17:38:55] logged in 52 test users
+[17:38:55] === resilient E5 rep 1: Load spike: 20 rps -> 300 rps for 20 s -> 20 rps (generated inside the Docker network).
+[17:39:54]   E5_load_spike r1: n=6499 ok=1.0 failed=0 degraded=0 p95=21.0ms impact=0.0s detect=None recover=None
+[17:39:54] === resilient E5 rep 2: Load spike: 20 rps -> 300 rps for 20 s -> 20 rps (generated inside the Docker network).
+[17:40:53]   E5_load_spike r2: n=6498 ok=1.0 failed=0 degraded=0 p95=15.1ms impact=0.0s detect=None recover=None
+[17:41:04] done

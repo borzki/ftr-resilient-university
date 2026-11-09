@@ -1,0 +1,65 @@
+# Alert rules. Short windows are used because experiments last 1-2 minutes;
+# production values would be longer (see report, section 4).
+groups:
+  - name: university-availability
+    rules:
+      - alert: ServiceInstanceDown
+        expr: up{job=~".*-service"} == 0
+        for: 4s
+        labels: {severity: critical}
+        annotations:
+          summary: "{{ $labels.instance }} is not responding to metric scrapes"
+          response: "Gateway ejects the instance; restart policy restarts the container. Page on-call if > 60s."
+
+      - alert: InstanceRestarted
+        expr: changes(process_start_time_seconds{job=~".*-service"}[1m]) > 0
+        for: 0s
+        labels: {severity: info}
+        annotations:
+          summary: "{{ $labels.instance }} restarted (crash masked by self-healing)"
+          response: "No user impact expected; find the crash cause in the logs. Repeated restarts = crash loop."
+
+      - alert: DatabasePrimaryDown
+        expr: max(dependency_up{dependency="db_primary"}) == 0
+        for: 4s
+        labels: {severity: critical}
+        annotations:
+          summary: "No service can reach the primary PostgreSQL database"
+          response: "Reads fail over to the replica, writes return 503. Restart/repair primary."
+
+      - alert: HighErrorRate
+        expr: |
+          sum by (service) (rate(http_requests_total{status=~"5.."}[20s]))
+            / sum by (service) (rate(http_requests_total[20s])) > 0.05
+        for: 6s
+        labels: {severity: warning}
+        annotations:
+          summary: "{{ $labels.service }} 5xx ratio above 5%"
+          response: "Check logs by request_id, dependency health and recent changes."
+
+      - alert: HighLatencyP95
+        expr: |
+          histogram_quantile(0.95, sum by (le, service) (rate(http_request_duration_seconds_bucket[20s]))) > 0.5
+        for: 6s
+        labels: {severity: warning}
+        annotations:
+          summary: "{{ $labels.service }} p95 latency above 500 ms"
+          response: "Look for slow dependencies (timeouts, retries) and saturation."
+
+      - alert: CircuitBreakerOpen
+        expr: max by (service, dependency) (circuit_breaker_state) == 2
+        for: 0s
+        labels: {severity: warning}
+        annotations:
+          summary: "{{ $labels.service }} opened the circuit to {{ $labels.dependency }}"
+          response: "Dependency is failing; the caller is degrading gracefully. Investigate the dependency."
+
+  - name: university-security
+    rules:
+      - alert: AuthFailureSpike
+        expr: sum(rate(auth_failures_total[30s])) > 1
+        for: 4s
+        labels: {severity: warning}
+        annotations:
+          summary: "More than 1 authentication/authorization failure per second"
+          response: "Possible brute force or token misuse: review audit_log, block source if confirmed."

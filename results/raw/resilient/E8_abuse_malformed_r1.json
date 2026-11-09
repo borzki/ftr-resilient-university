@@ -1,0 +1,101 @@
+{
+ "mode": "resilient",
+ "experiment": "E8_abuse_malformed",
+ "rep": 1,
+ "summary": {
+  "cases": [
+   {
+    "case": "negative_amount",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "huge_amount",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "xss_in_term",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "sql_injection_in_term",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "unknown_payment_method",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "wrong_type_student_id",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "oversized_body_64kb",
+    "status": 413,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "invalid_grade_value",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "sql_injection_course_code",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   },
+   {
+    "case": "invalid_json",
+    "status": 422,
+    "rejected": true,
+    "server_error": false
+   }
+  ],
+  "rejected": 10,
+  "total": 10,
+  "server_errors": 0,
+  "burst": {
+   "burst_requests": 400,
+   "burst_ok": 148,
+   "burst_429": 252,
+   "burst_errors": 0,
+   "probe_requests": 40,
+   "probe_ok": 40,
+   "probe_p95_ms": 18.5
+  },
+  "login_bruteforce_status_counts": {
+   "401": 62,
+   "429": 38
+  },
+  "all_containers_running": true,
+  "invalid_payments_stored": 0,
+  "invalid_grades_stored": 0,
+  "integrity": {
+   "payment_rows": 0,
+   "duplicated_refs": 0,
+   "duplicate_rows": 0,
+   "balance_mismatches": 0,
+   "invalid_payments": 0,
+   "invalid_grades": 0,
+   "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+   "total_paid": "0.00",
+   "sum_payments": "0",
+   "audit_denied": 0,
+   "audit_login_failures": 62
+  }
+ }
+}

@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: university
+    folder: University
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

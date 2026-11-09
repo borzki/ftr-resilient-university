@@ -1,0 +1,12 @@
+$ docker exec pg-backup ls -l /backups
+total 52
+-rw-r--r--    1 root     root         52117 Nov  9 12:43 university_20261109_124348.dump
+
+$ psql -c 'select client_addr, state, sync_state, replay_lag from pg_stat_replication'
+ client_addr |   state   | sync_state | replay_lag 
+-------------+-----------+------------+------------
+ 172.30.0.62 | streaming | async      | 
+(1 row)
+
+$ psql (on replica) -At -c 'select pg_is_in_recovery()'
+t

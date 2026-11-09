@@ -1,0 +1,8 @@
+[17:41:13] stopping resilient stack (if running)
+[17:41:19] starting baseline stack
+[17:41:29] logged in 52 test users
+[17:41:29] === baseline E5 rep 1: Load spike: 20 rps -> 300 rps for 20 s -> 20 rps (generated inside the Docker network).
+[17:42:24]   E5_load_spike r1: n=6499 ok=1.0 failed=0 degraded=0 p95=12.6ms impact=0.0s detect=None recover=None
+[17:42:24] === baseline E5 rep 2: Load spike: 20 rps -> 300 rps for 20 s -> 20 rps (generated inside the Docker network).
+[17:43:19]   E5_load_spike r2: n=6498 ok=1.0 failed=0 degraded=0 p95=12.5ms impact=0.0s detect=None recover=None
+[17:43:26] done

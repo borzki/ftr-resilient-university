@@ -1,0 +1,1731 @@
+{
+ "load_experiments": {
+  "E1_instance_crash": {
+   "baseline": {
+    "requests": {
+     "mean": 1349.0,
+     "min": 1349.0,
+     "max": 1349.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 0.633,
+     "min": 0.6093,
+     "max": 0.6694,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 0.528,
+     "min": 0.4981,
+     "max": 0.5752,
+     "n": 3
+    },
+    "failed": {
+     "mean": 495.667,
+     "min": 446.0,
+     "max": 527.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 1736.633,
+     "min": 1608.9,
+     "max": 1856.5,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 5022.867,
+     "min": 5020.1,
+     "max": 5024.7,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 20.443,
+     "min": 19.41,
+     "max": 21.51,
+     "n": 3
+    },
+    "detection_s": {
+     "mean": 8.817,
+     "min": 8.43,
+     "max": 9.44,
+     "n": 3
+    },
+    "container_recovery_s": {
+     "mean": 21.007,
+     "min": 20.4,
+     "max": 21.35,
+     "n": 3
+    },
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 96,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "960.00",
+     "sum_payments": "970.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "requests": {
+     "mean": 1349.0,
+     "min": 1349.0,
+     "max": 1349.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "failed": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 13.633,
+     "min": 13.4,
+     "max": 14.0,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 16.233,
+     "min": 14.6,
+     "max": 17.6,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "detection_s": null,
+    "container_recovery_s": {
+     "mean": 1.897,
+     "min": 1.76,
+     "max": 2.01,
+     "n": 3
+    },
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 124,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "1240.00",
+     "sum_payments": "1240.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   }
+  },
+  "E2_node_failure": {
+   "baseline": {
+    "requests": {
+     "mean": 1499.0,
+     "min": 1499.0,
+     "max": 1499.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 0.635,
+     "min": 0.6271,
+     "max": 0.6498,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 0.544,
+     "min": 0.5342,
+     "max": 0.5625,
+     "n": 3
+    },
+    "failed": {
+     "mean": 547.0,
+     "min": 525.0,
+     "max": 559.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 1600.633,
+     "min": 1551.2,
+     "max": 1629.4,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 5015.9,
+     "min": 5015.3,
+     "max": 5016.3,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 21.187,
+     "min": 21.15,
+     "max": 21.22,
+     "n": 3
+    },
+    "detection_s": {
+     "mean": 8.767,
+     "min": 8.41,
+     "max": 9.45,
+     "n": 3
+    },
+    "container_recovery_s": {
+     "mean": 22.46,
+     "min": 22.41,
+     "max": 22.54,
+     "n": 3
+    },
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 70,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "700.00",
+     "sum_payments": "700.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "requests": {
+     "mean": 1499.0,
+     "min": 1499.0,
+     "max": 1499.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "failed": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 46.767,
+     "min": 35.0,
+     "max": 63.0,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 24.233,
+     "min": 17.4,
+     "max": 37.4,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "detection_s": {
+     "mean": 8.503,
+     "min": 8.46,
+     "max": 8.55,
+     "n": 3
+    },
+    "container_recovery_s": {
+     "mean": 22.9,
+     "min": 22.81,
+     "max": 22.97,
+     "n": 3
+    },
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 135,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "1350.00",
+     "sum_payments": "1350.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   }
+  },
+  "E3_dependency_timeout": {
+   "baseline": {
+    "requests": {
+     "mean": 1349.0,
+     "min": 1349.0,
+     "max": 1349.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 0.675,
+     "min": 0.6738,
+     "max": 0.6768,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 0.583,
+     "min": 0.581,
+     "max": 0.5848,
+     "n": 3
+    },
+    "failed": {
+     "mean": 438.333,
+     "min": 436.0,
+     "max": 440.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 1933.133,
+     "min": 1916.0,
+     "max": 1945.9,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 5016.767,
+     "min": 5015.2,
+     "max": 5017.7,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 21.28,
+     "min": 21.02,
+     "max": 21.41,
+     "n": 3
+    },
+    "detection_s": {
+     "mean": 7.75,
+     "min": 7.38,
+     "max": 8.43,
+     "n": 3
+    },
+    "container_recovery_s": null,
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": {
+     "mean": 149.0,
+     "min": 143.0,
+     "max": 157.0,
+     "n": 3
+    },
+    "dashboard_p95_ms_during_fault": {
+     "mean": 5019.867,
+     "min": 5017.4,
+     "max": 5021.3,
+     "n": 3
+    },
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 0,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "0.00",
+     "sum_payments": "0",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "requests": {
+     "mean": 1349.0,
+     "min": 1349.0,
+     "max": 1349.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 0.934,
+     "min": 0.9303,
+     "max": 0.9385,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 0.915,
+     "min": 0.9105,
+     "max": 0.921,
+     "n": 3
+    },
+    "failed": {
+     "mean": 89.667,
+     "min": 83.0,
+     "max": 94.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 310.667,
+     "min": 287.0,
+     "max": 331.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 410.233,
+     "min": 369.8,
+     "max": 449.0,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 5003.733,
+     "min": 5003.5,
+     "max": 5003.9,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 20.427,
+     "min": 20.21,
+     "max": 20.61,
+     "n": 3
+    },
+    "detection_s": {
+     "mean": 9.123,
+     "min": 8.44,
+     "max": 9.58,
+     "n": 3
+    },
+    "container_recovery_s": null,
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "dashboard_p95_ms_during_fault": {
+     "mean": 812.233,
+     "min": 811.7,
+     "max": 813.1,
+     "n": 3
+    },
+    "cb_open_s": {
+     "mean": 6.43,
+     "min": 5.53,
+     "max": 7.33,
+     "n": 3
+    },
+    "integrity": {
+     "payment_rows": 0,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "0.00",
+     "sum_payments": "0",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   }
+  },
+  "E4_database_failure": {
+   "baseline": {
+    "requests": {
+     "mean": 1646.0,
+     "min": 1642.0,
+     "max": 1649.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 0.462,
+     "min": 0.2418,
+     "max": 0.575,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 0.343,
+     "min": 0.073,
+     "max": 0.4807,
+     "n": 3
+    },
+    "failed": {
+     "mean": 884.667,
+     "min": 700.0,
+     "max": 1245.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 3352.0,
+     "min": 2850.1,
+     "max": 3895.4,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 5580.867,
+     "min": 5451.0,
+     "max": 5835.4,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 36.273,
+     "min": 28.71,
+     "max": 50.55,
+     "n": 3
+    },
+    "detection_s": {
+     "mean": 14.833,
+     "min": 14.47,
+     "max": 15.5,
+     "n": 3
+    },
+    "container_recovery_s": {
+     "mean": 27.913,
+     "min": 26.84,
+     "max": 29.56,
+     "n": 3
+    },
+    "mttr_instance_s": null,
+    "read_success_ratio": {
+     "mean": 0.348,
+     "min": 0.0802,
+     "max": 0.4857,
+     "n": 3
+    },
+    "write_success_ratio": {
+     "mean": 0.293,
+     "min": 0.0075,
+     "max": 0.4409,
+     "n": 3
+    },
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 147,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "1470.00",
+     "sum_payments": "1470.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "requests": {
+     "mean": 1649.0,
+     "min": 1649.0,
+     "max": 1649.0,
+     "n": 3
+    },
+    "success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "window_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "failed": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "degraded": {
+     "mean": 44.667,
+     "min": 2.0,
+     "max": 74.0,
+     "n": 3
+    },
+    "latency_avg_ms": {
+     "mean": 46.533,
+     "min": 44.5,
+     "max": 50.5,
+     "n": 3
+    },
+    "latency_p95_ms": {
+     "mean": 22.433,
+     "min": 19.8,
+     "max": 24.3,
+     "n": 3
+    },
+    "impact_duration_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 3
+    },
+    "detection_s": null,
+    "container_recovery_s": {
+     "mean": 1.303,
+     "min": 1.27,
+     "max": 1.33,
+     "n": 3
+    },
+    "mttr_instance_s": null,
+    "read_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "write_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 3
+    },
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "integrity": {
+     "payment_rows": 153,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "1530.00",
+     "sum_payments": "1530.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   }
+  },
+  "E5_load_spike": {
+   "baseline": {
+    "requests": {
+     "mean": 6498.5,
+     "min": 6498.0,
+     "max": 6499.0,
+     "n": 2
+    },
+    "success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 2
+    },
+    "window_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 2
+    },
+    "failed": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "latency_avg_ms": {
+     "mean": 7.0,
+     "min": 7.0,
+     "max": 7.0,
+     "n": 2
+    },
+    "latency_p95_ms": {
+     "mean": 12.55,
+     "min": 12.5,
+     "max": 12.6,
+     "n": 2
+    },
+    "impact_duration_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "detection_s": null,
+    "container_recovery_s": null,
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "spike": {
+     "requests": {
+      "mean": 6000.5,
+      "min": 6000.0,
+      "max": 6001.0,
+      "n": 2
+     },
+     "success_ratio": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 2
+     },
+     "failed": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "n": 2
+     },
+     "latency_avg_ms": {
+      "mean": 7.0,
+      "min": 7.0,
+      "max": 7.0,
+      "n": 2
+     },
+     "latency_p95_ms": {
+      "mean": 12.6,
+      "min": 12.5,
+      "max": 12.7,
+      "n": 2
+     },
+     "latency_p99_ms": {
+      "mean": 18.75,
+      "min": 18.5,
+      "max": 19.0,
+      "n": 2
+     },
+     "send_rate_rps": {
+      "mean": 300.1,
+      "min": 300.1,
+      "max": 300.1,
+      "n": 2
+     }
+    },
+    "integrity": {
+     "payment_rows": 0,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "0.00",
+     "sum_payments": "0",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "requests": {
+     "mean": 6498.5,
+     "min": 6498.0,
+     "max": 6499.0,
+     "n": 2
+    },
+    "success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 2
+    },
+    "window_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 2
+    },
+    "failed": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "latency_avg_ms": {
+     "mean": 9.45,
+     "min": 8.2,
+     "max": 10.7,
+     "n": 2
+    },
+    "latency_p95_ms": {
+     "mean": 18.05,
+     "min": 15.1,
+     "max": 21.0,
+     "n": 2
+    },
+    "impact_duration_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 2
+    },
+    "detection_s": null,
+    "container_recovery_s": null,
+    "mttr_instance_s": null,
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "spike": {
+     "requests": {
+      "mean": 6000.5,
+      "min": 6000.0,
+      "max": 6001.0,
+      "n": 2
+     },
+     "success_ratio": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 2
+     },
+     "failed": {
+      "mean": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "n": 2
+     },
+     "latency_avg_ms": {
+      "mean": 9.6,
+      "min": 8.2,
+      "max": 11.0,
+      "n": 2
+     },
+     "latency_p95_ms": {
+      "mean": 19.05,
+      "min": 15.3,
+      "max": 22.8,
+      "n": 2
+     },
+     "latency_p99_ms": {
+      "mean": 70.65,
+      "min": 37.6,
+      "max": 103.7,
+      "n": 2
+     },
+     "send_rate_rps": {
+      "mean": 300.1,
+      "min": 300.1,
+      "max": 300.1,
+      "n": 2
+     }
+    },
+    "integrity": {
+     "payment_rows": 0,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "0.00",
+     "sum_payments": "0",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   }
+  },
+  "E10_chaos_soak": {
+   "baseline": {
+    "requests": {
+     "mean": 3595.0,
+     "min": 3595.0,
+     "max": 3595.0,
+     "n": 1
+    },
+    "success_ratio": {
+     "mean": 0.873,
+     "min": 0.8732,
+     "max": 0.8732,
+     "n": 1
+    },
+    "window_success_ratio": {
+     "mean": 0.836,
+     "min": 0.8356,
+     "max": 0.8356,
+     "n": 1
+    },
+    "failed": {
+     "mean": 456.0,
+     "min": 456.0,
+     "max": 456.0,
+     "n": 1
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 1
+    },
+    "latency_avg_ms": {
+     "mean": 677.5,
+     "min": 677.5,
+     "max": 677.5,
+     "n": 1
+    },
+    "latency_p95_ms": {
+     "mean": 5014.7,
+     "min": 5014.7,
+     "max": 5014.7,
+     "n": 1
+    },
+    "impact_duration_s": {
+     "mean": 111.45,
+     "min": 111.45,
+     "max": 111.45,
+     "n": 1
+    },
+    "detection_s": null,
+    "container_recovery_s": null,
+    "mttr_instance_s": {
+     "mean": 20.75,
+     "min": 20.75,
+     "max": 20.75,
+     "n": 1
+    },
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "crashes": [
+     {
+      "t": 41.1,
+      "container": "payment-1",
+      "instance_downtime_s": 21.75
+     },
+     {
+      "t": 112.8,
+      "container": "records-1",
+      "instance_downtime_s": 20.57
+     },
+     {
+      "t": 132.8,
+      "container": "payment-1",
+      "instance_downtime_s": 19.93
+     }
+    ],
+    "observed_mtbf_s": 60.0,
+    "integrity": {
+     "payment_rows": 286,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "2860.00",
+     "sum_payments": "2860.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "requests": {
+     "mean": 3599.0,
+     "min": 3599.0,
+     "max": 3599.0,
+     "n": 1
+    },
+    "success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 1
+    },
+    "window_success_ratio": {
+     "mean": 1.0,
+     "min": 1.0,
+     "max": 1.0,
+     "n": 1
+    },
+    "failed": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 1
+    },
+    "degraded": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 1
+    },
+    "latency_avg_ms": {
+     "mean": 12.6,
+     "min": 12.6,
+     "max": 12.6,
+     "n": 1
+    },
+    "latency_p95_ms": {
+     "mean": 18.4,
+     "min": 18.4,
+     "max": 18.4,
+     "n": 1
+    },
+    "impact_duration_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 1
+    },
+    "detection_s": null,
+    "container_recovery_s": null,
+    "mttr_instance_s": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 1
+    },
+    "read_success_ratio": null,
+    "write_success_ratio": null,
+    "collateral_failures": null,
+    "dashboard_p95_ms_during_fault": null,
+    "cb_open_s": null,
+    "crashes": [
+     {
+      "t": 41.1,
+      "container": "student-2",
+      "instance_downtime_s": 0.0
+     },
+     {
+      "t": 112.8,
+      "container": "records-1",
+      "instance_downtime_s": 0.0
+     }
+    ],
+    "observed_mtbf_s": 90.0,
+    "integrity": {
+     "payment_rows": 372,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "3720.00",
+     "sum_payments": "3720.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   }
+  }
+ },
+ "security": {
+  "E7_unauthorized_access": {
+   "baseline": {
+    "cases": [
+     {
+      "case": "no_token",
+      "request": "GET /api/students/1002",
+      "status": 200,
+      "expected": [
+       401
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "forged_signature_admin",
+      "request": "GET /api/students/1002",
+      "status": 200,
+      "expected": [
+       401
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "expired_token",
+      "request": "GET /api/students/1002",
+      "status": 200,
+      "expected": [
+       401
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "alg_none_token",
+      "request": "GET /api/admin/audit",
+      "status": 200,
+      "expected": [
+       401
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "idor_other_student_profile",
+      "request": "GET /api/students/1002",
+      "status": 200,
+      "expected": [
+       403
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "idor_other_transcript",
+      "request": "GET /api/records/transcripts/1002",
+      "status": 200,
+      "expected": [
+       403
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "student_changes_grade",
+      "request": "POST /api/records/grades",
+      "status": 200,
+      "expected": [
+       403
+      ],
+      "passed": false,
+      "data_exposed": false
+     },
+     {
+      "case": "student_reads_audit_log",
+      "request": "GET /api/admin/audit",
+      "status": 200,
+      "expected": [
+       403
+      ],
+      "passed": false,
+      "data_exposed": true
+     },
+     {
+      "case": "pay_for_other_student",
+      "request": "POST /api/payments",
+      "status": 201,
+      "expected": [
+       403
+      ],
+      "passed": false,
+      "data_exposed": false
+     },
+     {
+      "case": "internal_endpoint_via_gateway",
+      "request": "GET /internal/students/1002",
+      "status": 200,
+      "expected": [
+       403,
+       404
+      ],
+      "passed": false,
+      "data_exposed": true
+     }
+    ],
+    "passed": 0,
+    "total": 10,
+    "data_exposed": 8,
+    "grades_changed": true,
+    "payments_created": 1,
+    "audit_denied_events": 0,
+    "integrity": {
+     "payment_rows": 1,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "47315e529dfcdcbcaf37ac379d5884f3",
+     "total_paid": "1.00",
+     "sum_payments": "1.00",
+     "audit_denied": 0,
+     "audit_login_failures": 0
+    }
+   },
+   "resilient": {
+    "cases": [
+     {
+      "case": "no_token",
+      "request": "GET /api/students/1002",
+      "status": 401,
+      "expected": [
+       401
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "forged_signature_admin",
+      "request": "GET /api/students/1002",
+      "status": 401,
+      "expected": [
+       401
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "expired_token",
+      "request": "GET /api/students/1002",
+      "status": 401,
+      "expected": [
+       401
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "alg_none_token",
+      "request": "GET /api/admin/audit",
+      "status": 401,
+      "expected": [
+       401
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "idor_other_student_profile",
+      "request": "GET /api/students/1002",
+      "status": 403,
+      "expected": [
+       403
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "idor_other_transcript",
+      "request": "GET /api/records/transcripts/1002",
+      "status": 403,
+      "expected": [
+       403
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "student_changes_grade",
+      "request": "POST /api/records/grades",
+      "status": 403,
+      "expected": [
+       403
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "student_reads_audit_log",
+      "request": "GET /api/admin/audit",
+      "status": 403,
+      "expected": [
+       403
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "pay_for_other_student",
+      "request": "POST /api/payments",
+      "status": 403,
+      "expected": [
+       403
+      ],
+      "passed": true,
+      "data_exposed": false
+     },
+     {
+      "case": "internal_endpoint_via_gateway",
+      "request": "GET /internal/students/1002",
+      "status": 404,
+      "expected": [
+       403,
+       404
+      ],
+      "passed": true,
+      "data_exposed": false
+     }
+    ],
+    "passed": 10,
+    "total": 10,
+    "data_exposed": 0,
+    "grades_changed": false,
+    "payments_created": 0,
+    "audit_denied_events": 9,
+    "integrity": {
+     "payment_rows": 0,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "0.00",
+     "sum_payments": "0",
+     "audit_denied": 9,
+     "audit_login_failures": 0
+    }
+   }
+  },
+  "E8_abuse_malformed": {
+   "baseline": {
+    "cases": [
+     {
+      "case": "negative_amount",
+      "status": 201,
+      "rejected": false,
+      "server_error": false
+     },
+     {
+      "case": "huge_amount",
+      "status": 500,
+      "rejected": false,
+      "server_error": true
+     },
+     {
+      "case": "xss_in_term",
+      "status": 502,
+      "rejected": false,
+      "server_error": true
+     },
+     {
+      "case": "sql_injection_in_term",
+      "status": 201,
+      "rejected": false,
+      "server_error": false
+     },
+     {
+      "case": "unknown_payment_method",
+      "status": 201,
+      "rejected": false,
+      "server_error": false
+     },
+     {
+      "case": "wrong_type_student_id",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "oversized_body_64kb",
+      "status": 201,
+      "rejected": false,
+      "server_error": false
+     },
+     {
+      "case": "invalid_grade_value",
+      "status": 200,
+      "rejected": false,
+      "server_error": false
+     },
+     {
+      "case": "sql_injection_course_code",
+      "status": 200,
+      "rejected": false,
+      "server_error": false
+     },
+     {
+      "case": "invalid_json",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     }
+    ],
+    "rejected": 2,
+    "total": 10,
+    "server_errors": 2,
+    "burst": {
+     "burst_requests": 400,
+     "burst_ok": 400,
+     "burst_429": 0,
+     "burst_errors": 0,
+     "probe_requests": 40,
+     "probe_ok": 40,
+     "probe_p95_ms": 12.6
+    },
+    "login_bruteforce_status_counts": {
+     "401": 100
+    },
+    "all_containers_running": true,
+    "invalid_payments_stored": 5,
+    "invalid_grades_stored": 1,
+    "integrity": {
+     "payment_rows": 5,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 1,
+     "invalid_payments": 5,
+     "invalid_grades": 1,
+     "grades_checksum": "06ad904e0b20e0236ff05f783a2ac69b",
+     "total_paid": "-470.00",
+     "sum_payments": "999999999529.99",
+     "audit_denied": 0,
+     "audit_login_failures": 100
+    }
+   },
+   "resilient": {
+    "cases": [
+     {
+      "case": "negative_amount",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "huge_amount",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "xss_in_term",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "sql_injection_in_term",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "unknown_payment_method",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "wrong_type_student_id",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "oversized_body_64kb",
+      "status": 413,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "invalid_grade_value",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "sql_injection_course_code",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     },
+     {
+      "case": "invalid_json",
+      "status": 422,
+      "rejected": true,
+      "server_error": false
+     }
+    ],
+    "rejected": 10,
+    "total": 10,
+    "server_errors": 0,
+    "burst": {
+     "burst_requests": 400,
+     "burst_ok": 148,
+     "burst_429": 252,
+     "burst_errors": 0,
+     "probe_requests": 40,
+     "probe_ok": 40,
+     "probe_p95_ms": 18.5
+    },
+    "login_bruteforce_status_counts": {
+     "401": 62,
+     "429": 38
+    },
+    "all_containers_running": true,
+    "invalid_payments_stored": 0,
+    "invalid_grades_stored": 0,
+    "integrity": {
+     "payment_rows": 0,
+     "duplicated_refs": 0,
+     "duplicate_rows": 0,
+     "balance_mismatches": 0,
+     "invalid_payments": 0,
+     "invalid_grades": 0,
+     "grades_checksum": "89d410b0c18a22bf3492a28a00f501ea",
+     "total_paid": "0.00",
+     "sum_payments": "0",
+     "audit_denied": 0,
+     "audit_login_failures": 62
+    }
+   }
+  }
+ },
+ "consistency": {
+  "baseline": {
+   "A_response_lost_after_commit": {
+    "logical_payments": 100,
+    "acknowledged": 100,
+    "attempts_total": 134,
+    "lost_acknowledged": 0,
+    "duplicate_rows": 34,
+    "payment_rows": 134,
+    "balance_mismatches": 0,
+    "expected_total_for_acked": "2500.00",
+    "sum_payments": "3350.00",
+    "sum_account_balances": "3350.00",
+    "restarts_or_reapplies": 0,
+    "elapsed_s": 2.6
+   },
+   "B_crash_mid_transaction": {
+    "logical_payments": 80,
+    "acknowledged": 80,
+    "attempts_total": 86,
+    "lost_acknowledged": 0,
+    "duplicate_rows": 3,
+    "payment_rows": 83,
+    "balance_mismatches": 1,
+    "expected_total_for_acked": "2000.00",
+    "sum_payments": "2075.00",
+    "sum_account_balances": "2050.00",
+    "restarts_or_reapplies": 2,
+    "elapsed_s": 2.8
+   }
+  },
+  "resilient": {
+   "A_response_lost_after_commit": {
+    "logical_payments": 100,
+    "acknowledged": 100,
+    "attempts_total": 126,
+    "lost_acknowledged": 0,
+    "duplicate_rows": 0,
+    "payment_rows": 100,
+    "balance_mismatches": 0,
+    "expected_total_for_acked": "2500.00",
+    "sum_payments": "2500.00",
+    "sum_account_balances": "2500.00",
+    "restarts_or_reapplies": 0,
+    "elapsed_s": 1.5
+   },
+   "B_crash_mid_transaction": {
+    "logical_payments": 80,
+    "acknowledged": 58,
+    "attempts_total": 146,
+    "lost_acknowledged": 0,
+    "duplicate_rows": 0,
+    "payment_rows": 58,
+    "balance_mismatches": 0,
+    "expected_total_for_acked": "1450.00",
+    "sum_payments": "1450.00",
+    "sum_account_balances": "1450.00",
+    "restarts_or_reapplies": 4,
+    "elapsed_s": 12.4
+   }
+  }
+ },
+ "alerts": {
+  "resilient": {
+   "checks": {
+    "HighLatencyP95{service=records-service}": {
+     "injected_at": 10,
+     "fired": true,
+     "detection_s": 12.64,
+     "resolved_at": 63.07
+    },
+    "HighErrorRate{service=records-service}": {
+     "injected_at": 40,
+     "fired": true,
+     "detection_s": 14.98,
+     "resolved_at": 90.4
+    },
+    "AuthFailureSpike{}": {
+     "injected_at": 75,
+     "fired": true,
+     "detection_s": 9.33,
+     "resolved_at": 107.6
+    }
+   },
+   "unexpected": []
+  },
+  "baseline": {
+   "checks": {
+    "HighLatencyP95{service=records-service}": {
+     "injected_at": 10,
+     "fired": true,
+     "detection_s": 13.46,
+     "resolved_at": 63.88
+    },
+    "HighErrorRate{service=records-service}": {
+     "injected_at": 40,
+     "fired": true,
+     "detection_s": 13.78,
+     "resolved_at": 91.17
+    },
+    "AuthFailureSpike{}": {
+     "injected_at": 75,
+     "fired": false,
+     "detection_s": null,
+     "resolved_at": null
+    }
+   },
+   "unexpected": []
+  }
+ },
+ "reliability": {
+  "soak": {
+   "baseline": {
+    "soak_duration_s": 180,
+    "injected_failures": 3,
+    "observed_failure_rate_per_hour": 60.0,
+    "observed_mtbf_s": 60.0,
+    "measured_mttr_instance_s": 20.75,
+    "measured_availability_requests": 0.873
+   },
+   "resilient": {
+    "soak_duration_s": 180,
+    "injected_failures": 2,
+    "observed_failure_rate_per_hour": 40.0,
+    "observed_mtbf_s": 90.0,
+    "measured_mttr_instance_s": 0.0,
+    "measured_availability_requests": 1.0
+   }
+  },
+  "measured_mttr": {
+   "baseline": {
+    "app_instance_s": 21.007,
+    "database_s": 27.913
+   },
+   "resilient": {
+    "app_instance_s": 1.897,
+    "database_s": 1.303
+   },
+   "baseline_manual": {
+    "app_instance_s": 900.0,
+    "database_s": 1800.0
+   }
+  },
+  "assumed_mttf_hours": {
+   "gateway": 4380.0,
+   "app_instance": 720.0,
+   "database": 2190.0
+  },
+  "availability_model": {
+   "baseline": {
+    "A_gateway": 0.9999619,
+    "A_service": 0.999991896,
+    "A_database": 0.9999965,
+    "U_instance": "8.10e-06",
+    "U_service": "8.10e-06",
+    "A_system": 0.9999341,
+    "downtime_min_per_year": 34.6,
+    "MTTR_app_s": 21.007,
+    "MTTR_db_s": 27.913
+   },
+   "baseline_manual": {
+    "A_gateway": 0.9999619,
+    "A_service": 0.999652898,
+    "A_database": 0.9997717,
+    "U_instance": "3.47e-04",
+    "U_service": "3.47e-04",
+    "A_system": 0.998693,
+    "downtime_min_per_year": 686.9,
+    "MTTR_app_s": 900.0,
+    "MTTR_db_s": 1800.0
+   },
+   "resilient": {
+    "A_gateway": 0.9999962,
+    "A_service": 1.0,
+    "A_database": 0.9999998,
+    "U_instance": "7.32e-07",
+    "U_service": "5.36e-13",
+    "A_system": 0.999996,
+    "downtime_min_per_year": 2.1,
+    "MTTR_app_s": 1.897,
+    "MTTR_db_s": 1.303
+   }
+  }
+ }
+}

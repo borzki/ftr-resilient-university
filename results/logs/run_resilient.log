@@ -1,0 +1,87 @@
+[17:08:06] stopping baseline stack (if running)
+[17:08:08] starting resilient stack
+[17:08:25] logged in 52 test users
+[17:08:25] === resilient E1 rep 1: Application crash: SIGKILL the student-service process on instance 1.
+[17:08:45]   t= 10.0s crash student-1 (SIGKILL)
+[17:09:22]   E1_instance_crash r1: n=1349 ok=1.0 failed=0 degraded=0 p95=14.6ms impact=0.0s detect=None recover=1.76
+[17:09:22] === resilient E1 rep 2: Application crash: SIGKILL the student-service process on instance 1.
+[17:09:43]   t= 10.0s crash student-1 (SIGKILL)
+[17:10:20]   E1_instance_crash r2: n=1349 ok=1.0 failed=0 degraded=0 p95=17.6ms impact=0.0s detect=None recover=1.92
+[17:10:20] === resilient E1 rep 3: Application crash: SIGKILL the student-service process on instance 1.
+[17:10:41]   t= 10.0s crash student-1 (SIGKILL)
+[17:11:18]   E1_instance_crash r3: n=1349 ok=1.0 failed=0 degraded=0 p95=16.5ms impact=0.0s detect=None recover=2.01
+[17:11:18] === resilient E2 rep 1: Hardware/node failure: all containers of 'node A' disappear for 20 s.
+[17:11:39]   t= 10.0s node A down (docker stop -t 0)
+[17:11:59]   t= 30.0s node A repaired (docker start)
+[17:12:20]   E2_node_failure r1: n=1499 ok=1.0 failed=0 degraded=0 p95=17.9ms impact=0.0s detect=8.55 recover=22.97
+[17:12:20] === resilient E2 rep 2: Hardware/node failure: all containers of 'node A' disappear for 20 s.
+[17:12:41]   t= 10.0s node A down (docker stop -t 0)
+[17:13:01]   t= 30.0s node A repaired (docker start)
+[17:13:23]   E2_node_failure r2: n=1499 ok=1.0 failed=0 degraded=0 p95=17.4ms impact=0.0s detect=8.46 recover=22.81
+[17:13:23] === resilient E2 rep 3: Hardware/node failure: all containers of 'node A' disappear for 20 s.
+[17:13:44]   t= 10.0s node A down (docker stop -t 0)
+[17:14:04]   t= 30.0s node A repaired (docker start)
+[17:14:26]   E2_node_failure r3: n=1499 ok=1.0 failed=0 degraded=0 p95=37.4ms impact=0.0s detect=8.5 recover=22.92
+[17:14:26] === resilient E3 rep 1: Dependency hang: freeze the timetable service (docker pause) for 20 s.
+[17:14:47]   t= 10.0s pause timetable-1
+[17:15:07]   t= 30.0s unpause timetable-1
+[17:15:23]   E3_dependency_timeout r1: n=1349 ok=0.9318 failed=92 degraded=287 p95=5003.9ms impact=20.61s detect=8.44 recover=None
+[17:15:23] === resilient E3 rep 2: Dependency hang: freeze the timetable service (docker pause) for 20 s.
+[17:15:44]   t= 10.0s pause timetable-1
+[17:16:04]   t= 30.0s unpause timetable-1
+[17:16:20]   E3_dependency_timeout r2: n=1349 ok=0.9303 failed=94 degraded=314 p95=5003.8ms impact=20.21s detect=9.35 recover=None
+[17:16:20] === resilient E3 rep 3: Dependency hang: freeze the timetable service (docker pause) for 20 s.
+[17:16:41]   t= 10.0s pause timetable-1
+[17:17:01]   t= 30.0s unpause timetable-1
+[17:17:18]   E3_dependency_timeout r3: n=1349 ok=0.9385 failed=83 degraded=331 p95=5003.5ms impact=20.46s detect=9.58 recover=None
+[17:17:18] === resilient E4 rep 1: Database crash: SIGKILL the PostgreSQL primary postmaster.
+[17:17:39]   t= 10.0s crash pg-primary (SIGKILL)
+[17:18:25]   E4_database_failure r1: n=1649 ok=1.0 failed=0 degraded=2 p95=24.3ms impact=0.0s detect=None recover=1.27
+[17:18:25] === resilient E4 rep 2: Database crash: SIGKILL the PostgreSQL primary postmaster.
+[17:18:46]   t= 10.0s crash pg-primary (SIGKILL)
+[17:19:33]   E4_database_failure r2: n=1649 ok=1.0 failed=0 degraded=58 p95=19.8ms impact=0.0s detect=None recover=1.33
+[17:19:33] === resilient E4 rep 3: Database crash: SIGKILL the PostgreSQL primary postmaster.
+[17:19:55]   t= 10.0s crash pg-primary (SIGKILL)
+[17:20:41]   E4_database_failure r3: n=1649 ok=1.0 failed=0 degraded=74 p95=23.2ms impact=0.0s detect=None recover=1.31
+[17:20:41] === resilient E5 rep 1: Load spike: 20 rps -> 200 rps for 20 s -> 20 rps.
+[17:21:15]   t= 20.3s docker stats sample
+[17:21:39]   E5_load_spike r1: n=4416 ok=0.2865 failed=3151 degraded=0 p95=5640.6ms impact=25.75s detect=None recover=None
+[17:21:39] === resilient E5 rep 2: Load spike: 20 rps -> 200 rps for 20 s -> 20 rps.
+[17:22:12]   t= 20.2s docker stats sample
+[17:22:36]   E5_load_spike r2: n=4499 ok=0.3439 failed=2952 degraded=0 p95=5513.0ms impact=26.31s detect=None recover=None
+[17:22:36] === resilient E6 rep 1: Monitoring/alert validation: inject known latency, errors and auth failures.
+[17:22:57]   t= 10.0s records latency 700 ms
+[17:23:27]   t= 40.0s records latency off, error rate 30%
+[17:23:57]   t= 70.0s records faults off
+[17:24:02]   t= 75.0s 40 failed logins
+[17:24:38]   E6_alert_test r1: n=1649 ok=0.9466 failed=88 degraded=0 p95=712.6ms impact=60.28s detect=None recover=None
+[17:24:38] === resilient E7 rep 1: Security: protected operations without valid authorization.
+[17:24:50]   no_token: 401 PASS
+[17:24:50]   forged_signature_admin: 401 PASS
+[17:24:50]   expired_token: 401 PASS
+[17:24:50]   alg_none_token: 401 PASS
+[17:24:50]   idor_other_student_profile: 403 PASS
+[17:24:50]   idor_other_transcript: 403 PASS
+[17:24:50]   student_changes_grade: 403 PASS
+[17:24:50]   student_reads_audit_log: 403 PASS
+[17:24:50]   pay_for_other_student: 403 PASS
+[17:24:50]   internal_endpoint_via_gateway: 404 PASS
+[17:24:52] === resilient E8 rep 1: Security/misuse: malformed input, oversized body, request burst, login brute force.
+[17:25:03]   negative_amount: 422
+[17:25:03]   huge_amount: 422
+[17:25:03]   xss_in_term: 422
+[17:25:03]   sql_injection_in_term: 422
+[17:25:03]   unknown_payment_method: 422
+[17:25:03]   wrong_type_student_id: 422
+[17:25:03]   oversized_body_64kb: 413
+[17:25:03]   invalid_grade_value: 422
+[17:25:03]   sql_injection_course_code: 422
+[17:25:12]   burst: {'burst_requests': 400, 'burst_ok': 148, 'burst_429': 252, 'burst_errors': 0, 'probe_requests': 40, 'probe_ok': 40, 'probe_p95_ms': 18.5}  brute: {'401': 62, '429': 38}
+[17:25:12] === resilient E9 rep 1: Recovery and consistency of payments under (A) lost responses and (B) crashes mid-transaction.
+[17:26:01]   A_response_lost_after_commit: {'logical_payments': 100, 'acknowledged': 100, 'attempts_total': 126, 'lost_acknowledged': 0, 'duplicate_rows': 0, 'payment_rows': 100, 'balance_mismatches': 0, 'expected_total_for_acked': '2500.00', 'sum_payments': '2500.00', 'sum_account_balances': '2500.00', 'restarts_or_reapplies': 0, 'elapsed_s': 1.5}
+[17:26:36]   B_crash_mid_transaction: {'logical_payments': 80, 'acknowledged': 58, 'attempts_total': 146, 'lost_acknowledged': 0, 'duplicate_rows': 0, 'payment_rows': 58, 'balance_mismatches': 0, 'expected_total_for_acked': '1450.00', 'sum_payments': '1450.00', 'sum_account_balances': '1450.00', 'restarts_or_reapplies': 4, 'elapsed_s': 12.4}
+[17:26:36] === resilient E10 rep 1: Reliability soak: random instance crashes (seeded) for 180 s under constant load.
+[17:27:29]   t= 41.1s crash student-2
+[17:28:40]   t=112.8s crash records-1
+[17:29:50]   E10_chaos_soak r1: n=3599 ok=1.0 failed=0 degraded=0 p95=18.4ms impact=0.0s detect=None recover=None
+[17:30:01] done
