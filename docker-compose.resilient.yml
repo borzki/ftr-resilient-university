@@ -41,6 +41,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./gateway/nginx.resilient.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend:/usr/share/nginx/html:ro
     ports: ["127.0.0.1:18080:80"]
     depends_on: [student-1, student-2, payment-1, payment-2, records-1, records-2, timetable-1]
     networks: {uni: {ipv4_address: 172.30.0.10}}

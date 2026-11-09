@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>University Portal</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo" aria-hidden="true">U</span> University Portal</div>
+    <div id="userbox" class="userbox hidden">
+      <span id="who"></span>
+      <button id="logout" class="btn ghost">Log out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ---------------------------------------------------------- login -->
+    <section id="login-view" class="card narrow">
+      <h1>Sign in</h1>
+      <p class="muted">Test accounts: <code>s1001</code> ... <code>s1060</code>, <code>registrar</code>, <code>admin</code>.
+        The password is <code>SEED_PASSWORD</code> in <code>.env</code>.</p>
+      <form id="login-form" autocomplete="off">
+        <label>Username <input id="username" required maxlength="64" value="s1001"></label>
+        <label>Password <input id="password" type="password" required maxlength="128"></label>
+        <button class="btn" type="submit">Sign in</button>
+      </form>
+      <p id="login-error" class="error hidden" role="alert"></p>
+    </section>
+
+    <!-- ------------------------------------------------------ student -->
+    <section id="app-view" class="hidden">
+      <div id="banner" class="banner hidden" role="status"></div>
+
+      <div id="staff-bar" class="card staff hidden">
+        <label>Student ID <input id="lookup-id" type="number" min="1000" max="999999" value="1001"></label>
+        <button id="lookup-btn" class="btn">Open student</button>
+        <span class="muted" id="staff-hint">Staff view: open any student's records.</span>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h2>Profile</h2>
+          <dl id="profile" class="kv"></dl>
+        </article>
+
+        <article class="card">
+          <h2>Tuition account</h2>
+          <div id="account"></div>
+          <form id="pay-form" class="inline">
+            <label>Amount <input id="pay-amount" type="number" step="0.01" min="0.01" max="100000" value="250.00" required></label>
+            <label>Method
+              <select id="pay-method"><option value="card">card</option><option value="bank_transfer">bank transfer</option><option value="cash">cash</option></select>
+            </label>
+            <button class="btn" type="submit">Pay</button>
+          </form>
+          <p id="pay-msg" class="muted small"></p>
+        </article>
+
+        <article class="card wide">
+          <h2>Timetable <span class="muted small">Fall-2026</span></h2>
+          <div id="timetable"></div>
+        </article>
+
+        <article class="card wide">
+          <h2>Transcript <span id="gpa" class="pill"></span></h2>
+          <div id="transcript"></div>
+        </article>
+
+        <article class="card wide">
+          <h2>Payments</h2>
+          <div id="payments"></div>
+        </article>
+
+        <article id="grade-card" class="card wide hidden">
+          <h2>Record a grade <span class="muted small">registrar / admin</span></h2>
+          <form id="grade-form" class="inline">
+            <label>Course <input id="g-course" value="CSE301" pattern="[A-Z]{2,4}[0-9]{3}" required></label>
+            <label>Term <input id="g-term" value="Fall-2026" required></label>
+            <label>Grade
+              <select id="g-grade"><option>A</option><option>A-</option><option>B+</option><option>B</option><option>B-</option><option>C+</option><option>C</option><option>C-</option><option>D+</option><option>D</option><option>F</option></select>
+            </label>
+            <button class="btn" type="submit">Save</button>
+          </form>
+          <p id="grade-msg" class="muted small"></p>
+        </article>
+
+        <article id="audit-card" class="card wide hidden">
+          <h2>Audit log <span class="muted small">admin</span></h2>
+          <div id="audit"></div>
+        </article>
+
+        <!-- live monitor for demonstrations -->
+        <article class="card wide">
+          <div class="row">
+            <h2>Live service check</h2>
+            <label class="switch"><input id="live" type="checkbox"> poll every 0.5 s</label>
+          </div>
+          <p class="muted small">Sends one profile request every 0.5 s and shows the result, latency and the instance that answered.
+            Crash an instance while this runs to see failover.</p>
+          <div id="live-bars" class="bars" aria-label="last requests"></div>
+          <p id="live-stats" class="small"></p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="muted small">Synthetic data only. Fault Tolerance and Dependable Computing - endterm project.</footer>
+</body>
+</html>

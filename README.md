@@ -23,6 +23,7 @@ experimentally:
 services/            one Docker image, four services (student, payment, records, timetable)
   ftcommon/          shared library: config, logs, metrics, resilience, security, db, chaos
 gateway/             nginx configs (baseline / resilient)
+frontend/            web portal served by the gateway (HTML + vanilla JS)
 db/                  schema, synthetic seed data, roles, replica + backup scripts
 monitoring/          Prometheus configs, alert rules, Grafana dashboard
 scripts/             experiment harness, analysis, diagram, env generator
@@ -50,7 +51,7 @@ docker compose -f docker-compose.resilient.yml up -d --build # or docker-compose
 
 | URL | What |
 |---|---|
-| http://localhost:18080 | API gateway |
+| http://localhost:18080 | Web portal (student/staff UI) and API gateway (`/api/...`) |
 | http://localhost:19090 | Prometheus (alerts at /alerts) |
 | http://localhost:13000 | Grafana dashboard "University Information System - Resilience" |
 
@@ -111,6 +112,12 @@ python scripts/demo.py degrade    # timetable down, dashboard still answers (deg
 ```
 
 Keep Grafana (http://localhost:13000) open next to the terminal while recording.
+
+Visual alternative: open the portal at http://localhost:18080, sign in as `s1001`, tick
+"poll every 0.5 s" in *Live service check* and run `python scripts/demo.py crash` - the
+bars stay green while the answering instance changes. For degradation, run
+`docker pause timetable-1`, reload the page (a notice replaces the timetable), then
+`docker unpause timetable-1`.
 
 All data is synthetic. Fault injection (`/chaos`) is enabled only in these local test
 stacks and is not reachable through the gateway.

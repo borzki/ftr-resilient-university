@@ -27,6 +27,7 @@ services:
     container_name: gateway
     volumes:
       - ./gateway/nginx.baseline.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend:/usr/share/nginx/html:ro
     ports: ["127.0.0.1:18080:80"]
     depends_on: [student-1, payment-1, records-1, timetable-1]
     networks: {uni: {ipv4_address: 172.30.0.10}}
